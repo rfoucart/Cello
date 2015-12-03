@@ -276,6 +276,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PictNanediVallis.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PictNanediVallis.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PictNanediVallis.ErrorImage")));
+            this.PictNanediVallis.Image = global::PineApple.Properties.Resources.nanedi_valles;
             this.PictNanediVallis.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictNanediVallis.InitialImage")));
             this.PictNanediVallis.Location = new System.Drawing.Point(383, 14);
             this.PictNanediVallis.Name = "PictNanediVallis";
