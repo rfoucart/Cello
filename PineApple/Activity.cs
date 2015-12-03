@@ -11,7 +11,6 @@ namespace PineApple
     {
         private static int _referenceNumber=0;
         private int _number;
-        private string _name;
         private string _description;
         private int _genericType;
         private int _type;
@@ -25,11 +24,10 @@ namespace PineApple
         /// <summary>
         /// 
         /// </summary>
-        public Activity(string name, string description, int genericType ,int type, int location, List<int> astronautes, bool externMission, bool spaceVehicle, MDate startDate, MDate endDate)
+        public Activity(string description, int genericType ,int type, int location, List<int> astronautes, bool externMission, bool spaceVehicle, MDate startDate, MDate endDate)
         {
             _number = _referenceNumber;
             _referenceNumber++;
-            _name = name;
             _description = description;
             _genericType = genericType;
             _type = type;
@@ -43,10 +41,6 @@ namespace PineApple
         public int getNumber()
         {
             return _number;
-        }
-        public string getName()
-        {
-            return _name;
         }
         public string getDescription()
         {
@@ -63,6 +57,10 @@ namespace PineApple
         public MDate getStartDate()
         {
             return _startDate;
+        }
+        public int getDay()
+        {
+            return _startDate.getDay();
         }
         public MDate getEndDate()
         {
@@ -88,10 +86,6 @@ namespace PineApple
             XmlNode Number = xmlDoc.CreateElement("Number");
             Number.InnerText = this._number.ToString();
             activity.AppendChild(Number);
-
-            XmlNode Name = xmlDoc.CreateElement("Name");
-            Name.InnerText = this._name.ToString();
-            activity.AppendChild(Name);
 
             XmlNode Description = xmlDoc.CreateElement("Description");
             Description.InnerText = this._description.ToString();

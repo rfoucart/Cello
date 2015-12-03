@@ -62,11 +62,26 @@ namespace PineApple
         /// <param name="astronautes"></param>
         /// <param name="externMission"></param>
         /// <param name="spaceVehicle"></param>
-        public void newActivity(string name, string description,int genericType, int type, int location, List<int> astronautes, bool externMission, bool spaceVehicle, MDate startDate, MDate endDate)
+        public void newActivity(string description,int genericType, int type, int location, List<int> astronautes, bool externMission, bool spaceVehicle, MDate startDate, MDate endDate)
         {
-            _activities.Add(new Activity(name, description, genericType, type, location, astronautes, externMission, spaceVehicle, startDate, endDate));
+            _activities.Add(new Activity(description, genericType, type, location, astronautes, externMission, spaceVehicle, startDate, endDate));
         }
+        public List<Activity> defaultDay(int jour)
+        {
+            List<int> astro=_astronautes.Select(a=>a.getNumber()).ToList();
+            List<Activity> list = new List<Activity>(0);
 
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
+            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
+
+            return list;
+        }
         /// <summary>
         /// Delete an activity
         /// </summary>
@@ -144,6 +159,10 @@ namespace PineApple
         public List<Activity> searchByGenericType(string genericType)
         {
             return new List<Activity>(0);
+        }
+        public List<Activity> selectActivitiesByDay(int day)
+        {
+            return _activities.Where(x => x.getDay() == day).ToList();
         }
 
 
@@ -231,15 +250,14 @@ namespace PineApple
             //Add the ref number to the class
             PineApple.Location.setRefNumber(int.Parse(reflocation.InnerText));
         }*/
-        /*public MDate earthToMarsDate(DateTime earthDate)
+        public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
-            double hours = lengthFromBeginning.Hours/24.4;
-            int minutes = lengthFromBeginning.Minutes;
-            double min = hours - (int)(hours);
-
-
-            return new MDate(1,1,1);
-        }*/
+            double days=(lengthFromBeginning.Hours+lengthFromBeginning.Minutes/60.0)/24.4;
+            double hours=24.4*days-(int)(days);
+            double minutes =(hours - (int)(hours))*60;
+            
+            return new MDate((int)(days),(int)(hours),(int)(minutes));
+        }
     }
 }
