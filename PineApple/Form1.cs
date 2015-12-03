@@ -23,8 +23,6 @@ namespace PineApple
             
             globalPanel.Controls.Remove(globalPanel.GetControlFromPosition(0, 0));
 
-           
-
             // Création du paneau de boutons
             for(int i = 1 ; i <= 5 ; i++)
             {
@@ -47,9 +45,11 @@ namespace PineApple
             //mission.newAstronaute("pierre-jean");
 
             //mission.newLocation("petaouchnok",150,200);
+            //mission.newLocation("Base", 700, 1000);
             //this.WriteMissionXML();
-
+            
             this.ReadMissionXML();
+            mission.defaultDay(1);
 
             tbl();
         }
@@ -93,6 +93,52 @@ namespace PineApple
                         panel1.SetColumnSpan(cmd, 6);*/
                         
                     }
+            tableLayoutPanel1.ResumeLayout();
+        }
+        public void showDay(int day)
+        {
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel2.Controls.Clear();
+            tableLayoutPanel2.ColumnCount = 154; // <<<-------
+            tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
+            tableLayoutPanel2.ColumnStyles.Clear();
+            tableLayoutPanel2.RowStyles.Clear();
+            for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
+            {
+                ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f / (float)(tableLayoutPanel1.ColumnCount));
+                tableLayoutPanel1.ColumnStyles.Add(cs);
+            }
+            List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
+            int j = 0;
+            foreach (Activity a in ListOfActivities)
+            {
+                tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31));
+
+                Button cmd = new Button();
+                //cmd.Text = string.Format("{0}H", x);
+                cmd.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+
+                tableLayoutPanel2.Controls.Add(cmd,j,0);
+                tableLayoutPanel2.SetColumnSpan(cmd, 6);
+                j++;
+            }
+            //tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
+            //tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
+            for (int x = 0; x < 25; x++)
+            {
+                Label Text2 = new Label();
+
+                Text2.Text = x + "H";
+                Text2.BackColor = Color.LightCyan;
+                Text2.Margin = new Padding(0, 0, 0, 0);
+                Text2.Height = 30;
+                Text2.AutoSize = false;
+                tableLayoutPanel1.Controls.Add(Text2, x * 6, 0);
+                tableLayoutPanel1.SetColumnSpan(Text2, 6);
+
+            }
             tableLayoutPanel1.ResumeLayout();
         }
         private void WriteMissionXML()

@@ -23,9 +23,13 @@ namespace PineApple
             _hours = hours;
             _minutes = minutes;
         }
-        public string ToString()
+        public override string ToString()
         {
             return string.Format("{0} {1} {2}", _dayNumber, _hours, _minutes);
+        }
+        public int getDay()
+        {
+            return _dayNumber;
         }
         public void ParseMDate(string mdateString)
         {

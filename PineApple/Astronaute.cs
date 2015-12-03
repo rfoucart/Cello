@@ -38,6 +38,10 @@ namespace PineApple
         {
             return _name;
         }
+        public int getNumber()
+        {
+            return _number;
+        }
         public void WriteXML(XmlDocument xmlDoc, XmlNode rootNode)
         {
             XmlNode astronaute = xmlDoc.CreateElement("Astronaute");
