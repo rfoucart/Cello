@@ -231,7 +231,7 @@ namespace PineApple
             //Add the ref number to the class
             PineApple.Location.setRefNumber(int.Parse(reflocation.InnerText));
         }*/
-        public MDate earthToMarsDate(DateTime earthDate)
+        /*public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
             double hours = lengthFromBeginning.Hours/24.4;
@@ -240,6 +240,6 @@ namespace PineApple
 
 
             return new MDate(1,1,1);
-        }
+        }*/
     }
 }
