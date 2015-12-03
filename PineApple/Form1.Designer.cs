@@ -276,6 +276,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.PictNanediVallis.Cursor = System.Windows.Forms.Cursors.Cross;
             this.PictNanediVallis.ErrorImage = ((System.Drawing.Image)(resources.GetObject("PictNanediVallis.ErrorImage")));
+            this.PictNanediVallis.Image = global::PineApple.Properties.Resources.nanedi_valles;
             this.PictNanediVallis.InitialImage = ((System.Drawing.Image)(resources.GetObject("PictNanediVallis.InitialImage")));
             this.PictNanediVallis.Location = new System.Drawing.Point(383, 14);
             this.PictNanediVallis.Name = "PictNanediVallis";
@@ -661,7 +662,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.13897F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.86103F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 158F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 159F));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 59);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
