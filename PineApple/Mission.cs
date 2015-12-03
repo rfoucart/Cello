@@ -231,15 +231,14 @@ namespace PineApple
             //Add the ref number to the class
             PineApple.Location.setRefNumber(int.Parse(reflocation.InnerText));
         }*/
-        /*public MDate earthToMarsDate(DateTime earthDate)
+        public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
-            double hours = lengthFromBeginning.Hours/24.4;
-            int minutes = lengthFromBeginning.Minutes;
-            double min = hours - (int)(hours);
-
-
-            return new MDate(1,1,1);
-        }*/
+            double days=(lengthFromBeginning.Hours+lengthFromBeginning.Minutes/60.0)/24.4;
+            double hours=24.4*days-(int)(days);
+            double minutes =(hours - (int)(hours))*60;
+             
+            return new MDate((int)(days),(int)(hours),(int)(minutes));
+        }
     }
 }
