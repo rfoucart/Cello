@@ -76,7 +76,7 @@ namespace PineApple
         }
         public void WriteXML(XmlDocument xmlDoc, XmlNode rootNode)
         {
-            XmlNode activity = xmlDoc.CreateElement("activity");
+            XmlNode activity = xmlDoc.CreateElement("Activity");
             rootNode.AppendChild(activity);
 
             XmlNode ReferenceNumber = xmlDoc.CreateElement("ReferenceNumber");

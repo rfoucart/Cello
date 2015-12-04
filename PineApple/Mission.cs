@@ -47,9 +47,7 @@ namespace PineApple
             _genericTypes.Add(new GenericType("Communication", Communication));
             _genericTypes.Add(new GenericType("Repair", Repair));
             _genericTypes.Add(new GenericType("Emergency", Emergency));
-
         }
-
 
         /// <summary>
         /// Add an activity
@@ -207,7 +205,7 @@ namespace PineApple
         public void WriteActivityXML()
         {
             XmlDocument xmlDoc = new XmlDocument();
-            XmlNode rootNode = xmlDoc.CreateElement("Activity");
+            XmlNode rootNode = xmlDoc.CreateElement("Activities");
             xmlDoc.AppendChild(rootNode);
 
             foreach (Activity activity in _activities)
@@ -215,7 +213,7 @@ namespace PineApple
                 activity.WriteXML(xmlDoc, rootNode);
             }
 
-            xmlDoc.Save(".activities.xml");
+            xmlDoc.Save("./activities.xml");
         }
         /*private void ReadActivityXML()
         {
