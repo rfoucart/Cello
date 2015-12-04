@@ -49,7 +49,9 @@ namespace PineApple
             //this.WriteMissionXML();
             
             this.ReadMissionXML();
+            
             mission.defaultDay(1);
+            mission.WriteActivityXML();
             showDay(1);
 
 
@@ -107,6 +109,7 @@ namespace PineApple
             tableLayoutPanel2.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//.AddColumns;
             tableLayoutPanel2.ColumnStyles.Clear();
             tableLayoutPanel2.RowStyles.Clear();
+            tableLayoutPanel2.AutoScrollMargin = new Size(0,0);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
             {
                 ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f / (float)(tableLayoutPanel2.ColumnCount));
