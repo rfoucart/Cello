@@ -54,13 +54,13 @@ namespace PineApple
         {
             return _astronautes;
         }
-        public MDate getStartDate()
-        {
-            return _startDate;
-        }
         public int getDay()
         {
             return _startDate.getDay();
+        }
+        public MDate getStartDate()
+        {
+            return _startDate;
         }
         public MDate getEndDate()
         {
