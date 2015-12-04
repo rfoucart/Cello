@@ -66,21 +66,19 @@ namespace PineApple
         {
             _activities.Add(new Activity(description, genericType, type, location, astronautes, externMission, spaceVehicle, startDate, endDate));
         }
-        public List<Activity> defaultDay(int jour)
+        public void defaultDay(int jour)
         {
             List<int> astro=_astronautes.Select(a=>a.getNumber()).ToList();
-            List<Activity> list = new List<Activity>(0);
 
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
-            list.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
+            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
 
-            return list;
         }
         /// <summary>
         /// Delete an activity

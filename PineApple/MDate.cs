@@ -31,6 +31,14 @@ namespace PineApple
         {
             return _dayNumber;
         }
+        public int getHours()
+        {
+            return _hours;
+        }
+        public int getMinutes()
+        {
+            return _minutes;
+        }
         public void ParseMDate(string mdateString)
         {
             string[] mdateTab = mdateString.Split(' ');
