@@ -16,30 +16,18 @@ namespace PineApple
         const int numberOfDays = 500;
         private Mission mission;
         private List<Button> listButtonPanel;
+        private int daySheet;
         public Form1()
         {
             InitializeComponent();
+            listButtonPanel = new List<Button>(0);
             //mission = new Mission("wasabi",numberOfDays);
             
             globalPanel.Controls.Remove(globalPanel.GetControlFromPosition(0, 0));
-
-            // Création du paneau de boutons
-            for(int i = 1 ; i <= 5 ; i++)
-            {
-                for (int j = 1; j <= 10; j++)
-                {
-                    Button cmd = new Button();
-                    cmd.Text = string.Format("{0}", (i-1)*10+j);
-                    cmd.Image = new Bitmap(Image.FromFile("mol.png"), new Size(20, 20)); ;
-                    cmd.Bounds = button3.Bounds;
-                    cmd.ImageAlign = ContentAlignment.MiddleRight;
-                    cmd.TextAlign = ContentAlignment.MiddleLeft;
-                    cmd.FlatStyle = FlatStyle.Flat;
-                    cmd.BackColor = Color.LightBlue;
-                    cmd.Margin = new Padding(0, 0, 0, 0);
-                    globalPanel.Controls.Add(cmd, i-1, j-1);
-                }
-            }
+            daySheet=4;
+            globalPanelInit();
+            panelActu(4);
+            
             //mission.newAstronaute("jean-pierre");
             //mission.newAstronaute("jean-guy");
             //mission.newAstronaute("pierre-jean");
@@ -53,11 +41,33 @@ namespace PineApple
             mission.defaultDay(1);
             mission.WriteActivityXML();
             showDay(1);
+            
 
 
-            tbl();
+            dayHeaderInit();
         }
-        private void tbl()
+        private void globalPanelInit()
+        {
+            // Création du paneau de boutons
+            for (int i = 1; i <= 5; i++)
+            {
+                for (int j = 1; j <= 10; j++)
+                {
+                    Button cmd = new Button();
+                    cmd.Text = string.Format("{0}", (i - 1) * 10 + j);
+                    cmd.Image = new Bitmap(Image.FromFile("mol.png"), new Size(20, 20)); ;
+                    cmd.Bounds = button3.Bounds;
+                    cmd.ImageAlign = ContentAlignment.MiddleRight;
+                    cmd.TextAlign = ContentAlignment.MiddleLeft;
+                    cmd.FlatStyle = FlatStyle.Flat;
+                    cmd.BackColor = Color.LightBlue;
+                    cmd.Margin = new Padding(0, 0, 0, 0);
+                    globalPanel.Controls.Add(cmd, i - 1, j - 1);
+                    listButtonPanel.Add(cmd);
+                }
+            }
+        }
+        private void dayHeaderInit()
         {
             
             tableLayoutPanel1.SuspendLayout();
@@ -98,6 +108,16 @@ namespace PineApple
                         
             }
             tableLayoutPanel1.ResumeLayout();
+        }
+        public void panelActu(int i)
+        {
+            if(i>=1 && i<=10)
+            {
+               for(int j=0 ; j<50 ; j++)
+               {
+                   listButtonPanel[j].Text=string.Format("{0}",(i-1)*50+(j+1));
+               }
+            }
         }
         public void showDay(int day)
         {
@@ -216,5 +236,27 @@ namespace PineApple
         {
 
         }
+        //Previous/Next
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Button a = sender as Button;
+            if(a.Text=="Previous")
+            {
+                if(daySheet>1)
+                {   
+                    daySheet--;
+                    panelActu(daySheet);
+                }
+            }
+            else if(a.Text=="Next")
+            {
+                if (daySheet < 10)
+                {
+                    daySheet++;
+                    panelActu(daySheet);
+                }
+            }
+        }
+
     }
 }
