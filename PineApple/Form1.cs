@@ -118,6 +118,7 @@ namespace PineApple
                for(int j=0 ; j<50 ; j++)
                {
                    listButtonPanel[j].Text=string.Format("{0}",(i-1)*50+(j+1));
+                   listButtonPanel[j].Click+= new EventHandler(button3_Click);
                    if ((i - 1) * 50 + (j + 1) == mission.getCurrentDay().getDay())
                    {
                        listButtonPanel[j].BackColor=Color.LightGreen;
@@ -151,20 +152,22 @@ namespace PineApple
             }
             List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
             int j = 0;
-            foreach (Activity a in ListOfActivities)
+            if (ListOfActivities.Count() != 0)
             {
-                tableLayoutPanel2.RowCount +=1;
-                tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31));
+                foreach (Activity a in ListOfActivities)
+                {
+                    tableLayoutPanel2.RowCount += 1;
+                    tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31));
 
-                Button cmd = new Button();
-                cmd.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    Button cmd = new Button();
+                    cmd.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
 
 
-                tableLayoutPanel2.Controls.Add(cmd,hoursToColumn(a.getStartDate().getHours(),a.getStartDate().getMinutes()),j);
-                tableLayoutPanel2.SetColumnSpan(cmd, lengthToColumn(a.getStartDate(),a.getEndDate()));
-                j++;
+                    tableLayoutPanel2.Controls.Add(cmd, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
+                    tableLayoutPanel2.SetColumnSpan(cmd, lengthToColumn(a.getStartDate(), a.getEndDate()));
+                    j++;
+                }
             }
-
             tableLayoutPanel2.ResumeLayout();
         }
         private int hoursToColumn(int hours, int minutes)
@@ -270,6 +273,12 @@ namespace PineApple
                     panelActu(daySheet);
                 }
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Button A = sender as Button;
+            showDay(int.Parse(A.Text));
         }
 
     }
