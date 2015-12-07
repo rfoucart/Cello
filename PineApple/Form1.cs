@@ -282,5 +282,35 @@ namespace PineApple
             showDay(int.Parse(A.Text));
         }
 
+        private void PictNanediVallis_MouseClick(object sender, MouseEventArgs e)
+        {
+            double PBWidth = PictNanediVallis.Width;
+            double PBHeight = PictNanediVallis.Height;
+            double ImageWidth = PictNanediVallis.Image.Width;
+            double ImageHeight = PictNanediVallis.Image.Height;
+            double xRatio = PBWidth / ImageWidth;
+            double yRatio = PBHeight / ImageHeight;
+            Point basePixel = new Point(e.X, e.Y);
+
+            // Application des taux d'étirement/compression du ratio
+            basePixel.X = (int)(basePixel.X / xRatio);
+            basePixel.Y = (int)(basePixel.Y / yRatio);
+            /* Le clic sur l'image redimensionnée renvoie désormais les coordonnées (arrondies)
+             * de l'image en taille réelle. Les axes partent du coin haut gauche du picture box :
+             * Pour les abcisses : gauche -> droite
+             * Pour les ordonnées : haut -> bas
+             */
+
+            /* L'origine du repère est fixé au pixel (700,1000).
+             * 1 pixel correspond à 5 mètres.
+             * => Il faut décaler l'origine, inverser le sens de l'axe des ordonnées et mettre à l'échelle
+             */
+            int metersX = (basePixel.X - 700) * 5;
+            int metersY = (basePixel.Y - 1000) * (-5);
+            // Insertion dans les TextBoxes correspondantes
+            textBox1.Text = metersX.ToString();
+            textBox2.Text = metersY.ToString();
+        }
+
     }
 }
