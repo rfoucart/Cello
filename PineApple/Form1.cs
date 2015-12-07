@@ -160,12 +160,13 @@ namespace PineApple
                     tableLayoutPanel2.RowCount += 1;
                     tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31));
 
-                    Button cmd = new Button();
-                    cmd.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    Button cmd2 = new Button();
+                    cmd2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    cmd2.Click += new System.EventHandler(cmd2_Click);
+                    cmd2.Tag = a;
 
-
-                    tableLayoutPanel2.Controls.Add(cmd, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
-                    tableLayoutPanel2.SetColumnSpan(cmd, lengthToColumn(a.getStartDate(), a.getEndDate()));
+                    tableLayoutPanel2.Controls.Add(cmd2, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
+                    tableLayoutPanel2.SetColumnSpan(cmd2, lengthToColumn(a.getStartDate(), a.getEndDate()));
                     j++;
                 }
             }
@@ -284,12 +285,8 @@ namespace PineApple
 
         private void PictNanediVallis_MouseClick(object sender, MouseEventArgs e)
         {
-            double PBWidth = PictNanediVallis.Width;
-            double PBHeight = PictNanediVallis.Height;
-            double ImageWidth = PictNanediVallis.Image.Width;
-            double ImageHeight = PictNanediVallis.Image.Height;
-            double xRatio = PBWidth / ImageWidth;
-            double yRatio = PBHeight / ImageHeight;
+            double xRatio = (double)PictNanediVallis.Width / PictNanediVallis.Image.Width;
+            double yRatio = (double)PictNanediVallis.Height / PictNanediVallis.Image.Height;
             Point basePixel = new Point(e.X, e.Y);
 
             // Application des taux d'étirement/compression du ratio
@@ -312,5 +309,14 @@ namespace PineApple
             textBox2.Text = metersY.ToString();
         }
 
+        private void cmd2_Click(object sender, EventArgs e)
+        {
+            Activity a = (Activity)(sender as Button).Tag;
+            comboBoxStartHour.SelectedIndex = a.getStartDate().getHours();
+            comboBoxStartMinutes.SelectedIndex = a.getStartDate().getMinutes() / 10;
+            comboBoxEndHour.SelectedIndex = a.getEndDate().getHours();
+            comboBoxEndMinutes.SelectedIndex = a.getEndDate().getMinutes() / 10;
+            richTextBox1.Text = a.getDescription();
+        }
     }
 }

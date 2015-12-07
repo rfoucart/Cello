@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.PreviousButton = new System.Windows.Forms.Button();
+            this.NextButton = new System.Windows.Forms.Button();
             this.globalPanel = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -46,11 +46,11 @@
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.comboBoxStartMinutes = new System.Windows.Forms.ComboBox();
+            this.comboBoxStartHour = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.comboBoxEndMinutes = new System.Windows.Forms.ComboBox();
+            this.comboBoxEndHour = new System.Windows.Forms.ComboBox();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -95,26 +95,26 @@
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button1
+            // PreviousButton
             // 
-            this.button1.Location = new System.Drawing.Point(12, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Previous";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.PreviousButton.Location = new System.Drawing.Point(12, 27);
+            this.PreviousButton.Name = "PreviousButton";
+            this.PreviousButton.Size = new System.Drawing.Size(75, 23);
+            this.PreviousButton.TabIndex = 4;
+            this.PreviousButton.Text = "Previous";
+            this.PreviousButton.UseVisualStyleBackColor = true;
+            this.PreviousButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // NextButton
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(448, 27);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Next";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button1_Click);
+            this.NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NextButton.Location = new System.Drawing.Point(448, 27);
+            this.NextButton.Name = "NextButton";
+            this.NextButton.Size = new System.Drawing.Size(75, 23);
+            this.NextButton.TabIndex = 5;
+            this.NextButton.Text = "Next";
+            this.NextButton.UseVisualStyleBackColor = true;
+            this.NextButton.Click += new System.EventHandler(this.button1_Click);
             // 
             // globalPanel
             // 
@@ -173,11 +173,11 @@
             this.groupBox1.Controls.Add(this.richTextBox1);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.comboBoxStartMinutes);
+            this.groupBox1.Controls.Add(this.comboBoxStartHour);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.comboBox3);
-            this.groupBox1.Controls.Add(this.comboBox4);
+            this.groupBox1.Controls.Add(this.comboBoxEndMinutes);
+            this.groupBox1.Controls.Add(this.comboBoxEndHour);
             this.groupBox1.Controls.Add(this.numericUpDown1);
             this.groupBox1.Controls.Add(this.checkedListBox1);
             this.groupBox1.Controls.Add(this.textBox3);
@@ -305,7 +305,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(168, 13);
             this.label6.TabIndex = 48;
-            this.label6.Text = "Description : (400 caractères max)";
+            this.label6.Text = "Description : (max 400 characters)";
             // 
             // label13
             // 
@@ -316,25 +316,25 @@
             this.label13.TabIndex = 47;
             this.label13.Text = ":";
             // 
-            // comboBox1
+            // comboBoxStartMinutes
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxStartMinutes.FormattingEnabled = true;
+            this.comboBoxStartMinutes.Items.AddRange(new object[] {
             "00",
             "10",
             "20",
             "30",
             "40",
             "50"});
-            this.comboBox1.Location = new System.Drawing.Point(158, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(41, 21);
-            this.comboBox1.TabIndex = 46;
+            this.comboBoxStartMinutes.Location = new System.Drawing.Point(158, 89);
+            this.comboBoxStartMinutes.Name = "comboBoxStartMinutes";
+            this.comboBoxStartMinutes.Size = new System.Drawing.Size(41, 21);
+            this.comboBoxStartMinutes.TabIndex = 46;
             // 
-            // comboBox2
+            // comboBoxStartHour
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.comboBoxStartHour.FormattingEnabled = true;
+            this.comboBoxStartHour.Items.AddRange(new object[] {
             "00",
             "01",
             "02",
@@ -360,10 +360,10 @@
             "22",
             "23",
             "24"});
-            this.comboBox2.Location = new System.Drawing.Point(102, 89);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(44, 21);
-            this.comboBox2.TabIndex = 45;
+            this.comboBoxStartHour.Location = new System.Drawing.Point(102, 89);
+            this.comboBoxStartHour.Name = "comboBoxStartHour";
+            this.comboBoxStartHour.Size = new System.Drawing.Size(44, 21);
+            this.comboBoxStartHour.TabIndex = 45;
             // 
             // label8
             // 
@@ -374,25 +374,25 @@
             this.label8.TabIndex = 44;
             this.label8.Text = ":";
             // 
-            // comboBox3
+            // comboBoxEndMinutes
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.comboBoxEndMinutes.FormattingEnabled = true;
+            this.comboBoxEndMinutes.Items.AddRange(new object[] {
             "00",
             "10",
             "20",
             "30",
             "40",
             "50"});
-            this.comboBox3.Location = new System.Drawing.Point(158, 134);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(41, 21);
-            this.comboBox3.TabIndex = 43;
+            this.comboBoxEndMinutes.Location = new System.Drawing.Point(158, 134);
+            this.comboBoxEndMinutes.Name = "comboBoxEndMinutes";
+            this.comboBoxEndMinutes.Size = new System.Drawing.Size(41, 21);
+            this.comboBoxEndMinutes.TabIndex = 43;
             // 
-            // comboBox4
+            // comboBoxEndHour
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.comboBoxEndHour.FormattingEnabled = true;
+            this.comboBoxEndHour.Items.AddRange(new object[] {
             "00",
             "01",
             "02",
@@ -418,10 +418,10 @@
             "22",
             "23",
             "24"});
-            this.comboBox4.Location = new System.Drawing.Point(102, 134);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(44, 21);
-            this.comboBox4.TabIndex = 42;
+            this.comboBoxEndHour.Location = new System.Drawing.Point(102, 134);
+            this.comboBoxEndHour.Name = "comboBoxEndHour";
+            this.comboBoxEndHour.Size = new System.Drawing.Size(44, 21);
+            this.comboBoxEndHour.TabIndex = 42;
             // 
             // numericUpDown1
             // 
@@ -499,7 +499,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(38, 13);
             this.label10.TabIndex = 34;
-            this.label10.Text = "mètres";
+            this.label10.Text = "meters";
             // 
             // label9
             // 
@@ -508,52 +508,52 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(38, 13);
             this.label9.TabIndex = 33;
-            this.label9.Text = "mètres";
+            this.label9.Text = "meters";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(179, 201);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(35, 13);
+            this.label7.Size = new System.Drawing.Size(41, 13);
             this.label7.TabIndex = 32;
-            this.label7.Text = "Nom :";
+            this.label7.Text = "Name :";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(9, 169);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 13);
+            this.label5.Size = new System.Drawing.Size(63, 13);
             this.label5.TabIndex = 31;
-            this.label5.Text = "Astronautes :";
+            this.label5.Text = "Astronauts :";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 137);
+            this.label4.Location = new System.Drawing.Point(42, 137);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.Size = new System.Drawing.Size(54, 13);
             this.label4.TabIndex = 30;
-            this.label4.Text = "Heure de fin :";
+            this.label4.Text = "End time :";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(9, 92);
+            this.label3.Location = new System.Drawing.Point(39, 92);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(87, 13);
+            this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 29;
-            this.label3.Text = "Heure de début :";
+            this.label3.Text = "Start time :";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 47);
+            this.label2.Location = new System.Drawing.Point(64, 47);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 13);
+            this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 28;
-            this.label2.Text = "Jour n° :";
+            this.label2.Text = "Day :";
             // 
             // label1
             // 
@@ -561,9 +561,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(187, 171);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.Size = new System.Drawing.Size(34, 13);
             this.label1.TabIndex = 27;
-            this.label1.Text = "Lieu";
+            this.label1.Text = "Place";
             // 
             // groupBox2
             // 
@@ -666,7 +666,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.13897F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.86103F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 59);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -789,8 +789,8 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.globalPanel);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.NextButton);
+            this.Controls.Add(this.PreviousButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -811,8 +811,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button PreviousButton;
+        private System.Windows.Forms.Button NextButton;
         private System.Windows.Forms.TableLayoutPanel globalPanel;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -820,11 +820,11 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox comboBoxStartMinutes;
+        private System.Windows.Forms.ComboBox comboBoxStartHour;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox comboBoxEndMinutes;
+        private System.Windows.Forms.ComboBox comboBoxEndHour;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.TextBox textBox3;
