@@ -22,7 +22,10 @@ namespace PineApple
             InitializeComponent();
             listButtonPanel = new List<Button>(0);
             //mission = new Mission("wasabi",numberOfDays);
-            
+
+
+            this.ReadMissionXML();
+
             globalPanel.Controls.Remove(globalPanel.GetControlFromPosition(0, 0));
             daySheet=4;
             globalPanelInit();
@@ -36,13 +39,12 @@ namespace PineApple
             //mission.newLocation("Base", 700, 1000);
             //this.WriteMissionXML();
             
-            this.ReadMissionXML();
+           
             
             mission.defaultDay(1);
             mission.WriteActivityXML();
             showDay(1);
             
-
 
             dayHeaderInit();
         }
@@ -116,6 +118,18 @@ namespace PineApple
                for(int j=0 ; j<50 ; j++)
                {
                    listButtonPanel[j].Text=string.Format("{0}",(i-1)*50+(j+1));
+                   if ((i - 1) * 50 + (j + 1) == mission.getCurrentDay().getDay())
+                   {
+                       listButtonPanel[j].BackColor=Color.LightGreen;
+                   }
+                   else if ((i - 1) * 50 + (j + 1) > mission.getCurrentDay().getDay())
+                   {
+                       listButtonPanel[j].BackColor=Color.LightBlue;
+                   }
+                   else if ((i-1)*50+(j+1) < mission.getCurrentDay().getDay())
+                   {
+                       listButtonPanel[j].BackColor = Color.LightGray;
+                   }
                }
             }
         }

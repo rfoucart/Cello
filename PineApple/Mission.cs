@@ -47,6 +47,12 @@ namespace PineApple
             _genericTypes.Add(new GenericType("Communication", Communication));
             _genericTypes.Add(new GenericType("Repair", Repair));
             _genericTypes.Add(new GenericType("Emergency", Emergency));
+
+            _currentDay = new MDate(350,0,0);
+        }
+        public MDate getCurrentDay()
+        {
+            return _currentDay;
         }
 
         /// <summary>
