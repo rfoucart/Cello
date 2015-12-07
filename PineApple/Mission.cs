@@ -74,14 +74,14 @@ namespace PineApple
         {
             List<int> astro=_astronautes.Select(a=>a.getNumber()).ToList();
 
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
-            _activities.Add(new Activity("", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
+            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
 
         }
         /// <summary>
@@ -221,37 +221,33 @@ namespace PineApple
 
             xmlDoc.Save("./activities.xml");
         }
-        /*private void ReadActivityXML()
+        public void ReadActivityXML()
         {
 
             XmlDocument doc = new XmlDocument();
-            doc.Load("mission.xml");
-            var name = doc.SelectSingleNode("/Missions/Mission/Name");
-            var astronautes = doc.SelectNodes("/Missions/Mission/Astronautes/Astronaute");
-            var refastro = doc.SelectSingleNode("/Missions/Mission/refNumberAstronaute");
-            var locations = doc.SelectNodes("/Missions/Mission/Locations/Location");
-            var reflocation = doc.SelectSingleNode("/Missions/Mission/refNumberLoc");
-
-            //Create the mission
-            mission = new Mission(name.InnerText, numberOfDays);
+            doc.Load("activities.xml");
+            var refNum = doc.SelectSingleNode("/Activities/ReferenceNumber");
+            var activities = doc.SelectNodes("/Activities/Activity");
 
             //Add the astronautes
-            foreach (XmlNode astronaute in astronautes)
+            foreach (XmlNode activity in activities)
             {
-                mission.newAstronaute(astronaute["Name"].InnerText, int.Parse(astronaute["Number"].InnerText));
+                MDate endDate = new MDate();
+                MDate startDate = new MDate();
+                endDate.ParseMDate(activity["EndDate"].InnerText);
+                startDate.ParseMDate(activity["StartDate"].InnerText);
+                string[] astro = activity["Astronautes"].InnerText.Split(' ');
+                List<int> _astro = new List<int>(0);
+                foreach(string a in astro)
+                {
+                    _astro.Add(int.Parse(a));
+                }
+                newActivity(activity["Description"].InnerText, int.Parse(activity["GenerycType"].InnerText), int.Parse(activity["Type"].InnerText), int.Parse(activity["Location"].InnerText), _astro, bool.Parse(activity["ExternMission"].InnerText), bool.Parse(activity["SpaceVehicle"].InnerText), startDate, endDate);
             }
 
             //Add the ref number to the class
-            Astronaute.setRefNumber(int.Parse(refastro.InnerText));
-
-            foreach (XmlNode location in locations)
-            {
-                mission.newLocation(location["Name"].InnerText, int.Parse(location["POSX"].InnerText), int.Parse(location["POSY"].InnerText), int.Parse(location["Number"].InnerText));
-            }
-
-            //Add the ref number to the class
-            PineApple.Location.setRefNumber(int.Parse(reflocation.InnerText));
-        }*/
+            Activity.setRefNumber(int.Parse(refNum.InnerText));
+        }
         public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;

@@ -25,6 +25,7 @@ namespace PineApple
 
 
             this.ReadMissionXML();
+            mission.ReadActivityXML();
 
             globalPanel.Controls.Remove(globalPanel.GetControlFromPosition(0, 0));
             daySheet=4;
@@ -41,8 +42,8 @@ namespace PineApple
             
            
             
-            mission.defaultDay(1);
-            mission.WriteActivityXML();
+            //mission.defaultDay(1);
+            //mission.WriteActivityXML();
             showDay(1);
             
 

@@ -74,14 +74,21 @@ namespace PineApple
         {
             return _type;
         }
+        public static void setRefNumber(int refNumber)
+        {
+            if(_referenceNumber==0)
+            {
+                _referenceNumber = refNumber;
+            }
+        }
         public void WriteXML(XmlDocument xmlDoc, XmlNode rootNode)
         {
-            XmlNode activity = xmlDoc.CreateElement("Activity");
-            rootNode.AppendChild(activity);
-
             XmlNode ReferenceNumber = xmlDoc.CreateElement("ReferenceNumber");
             ReferenceNumber.InnerText = _referenceNumber.ToString();
-            activity.AppendChild(ReferenceNumber);
+            rootNode.AppendChild(ReferenceNumber);
+
+            XmlNode activity = xmlDoc.CreateElement("Activity");
+            rootNode.AppendChild(activity);
           
             XmlNode Number = xmlDoc.CreateElement("Number");
             Number.InnerText = this._number.ToString();
@@ -100,9 +107,18 @@ namespace PineApple
             activity.AppendChild(Type);
 
             string astro = "";
+            int c = 0;
             foreach (int i in this._astronautes)
             {
-                astro += i.ToString() + ",";
+                if (c < this._astronautes.Count() - 1)
+                {
+                    astro += i.ToString() + " ";
+                    c++;
+                }
+                else if (c == this._astronautes.Count() - 1)
+                {
+                    astro += i.ToString();
+                }
             }
             XmlNode Astronautes = xmlDoc.CreateElement("Astronautes");
             Astronautes.InnerText = astro;
