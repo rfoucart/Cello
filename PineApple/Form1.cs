@@ -309,14 +309,25 @@ namespace PineApple
             textBox2.Text = metersY.ToString();
         }
 
+        //Remplissage des champs lors du clic sur une activité
         private void cmd2_Click(object sender, EventArgs e)
         {
-            Activity a = (Activity)(sender as Button).Tag;
+            Activity a = (Activity)(sender as Button).Tag; // Récupération de l'activité liée au bouton
             comboBoxStartHour.SelectedIndex = a.getStartDate().getHours();
             comboBoxStartMinutes.SelectedIndex = a.getStartDate().getMinutes() / 10;
             comboBoxEndHour.SelectedIndex = a.getEndDate().getHours();
             comboBoxEndMinutes.SelectedIndex = a.getEndDate().getMinutes() / 10;
             richTextBox1.Text = a.getDescription();
+            labelGenericType.Text = a.getGenericType().ToString();
+            comboBoxType.SelectedItem = a.getType().ToString();
+
+            // On déselectionne tous les astronautes pour resélectionner les bons
+            for (int i = 1; i < checkedListBox1.Items.Count; i++)
+                checkedListBox1.SetItemChecked(i, false);
+            foreach (int numAstro in a.getAstronautes())
+                checkedListBox1.SetItemChecked(numAstro, true);
+                
+
         }
     }
 }
