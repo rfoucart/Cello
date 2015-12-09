@@ -34,13 +34,13 @@
             this.globalPanel = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
+            this.ResetActivityButton = new System.Windows.Forms.Button();
             this.labelGenericType = new System.Windows.Forms.Label();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.NewActivityButton = new System.Windows.Forms.Button();
+            this.SaveActivityButton = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.PictNanediVallis = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
@@ -161,13 +161,13 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.button7);
+            this.groupBox1.Controls.Add(this.ResetActivityButton);
             this.groupBox1.Controls.Add(this.labelGenericType);
             this.groupBox1.Controls.Add(this.comboBoxType);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.button5);
+            this.groupBox1.Controls.Add(this.NewActivityButton);
+            this.groupBox1.Controls.Add(this.SaveActivityButton);
             this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.PictNanediVallis);
             this.groupBox1.Controls.Add(this.richTextBox1);
@@ -200,14 +200,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Activity";
             // 
-            // button7
+            // ResetActivityButton
             // 
-            this.button7.Location = new System.Drawing.Point(318, 400);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(59, 38);
-            this.button7.TabIndex = 58;
-            this.button7.Text = "Reset Mods";
-            this.button7.UseVisualStyleBackColor = true;
+            this.ResetActivityButton.Location = new System.Drawing.Point(318, 400);
+            this.ResetActivityButton.Name = "ResetActivityButton";
+            this.ResetActivityButton.Size = new System.Drawing.Size(59, 38);
+            this.ResetActivityButton.TabIndex = 58;
+            this.ResetActivityButton.Text = "Reset Mods";
+            this.ResetActivityButton.UseVisualStyleBackColor = true;
+            this.ResetActivityButton.Click += new System.EventHandler(this.ResetActivityButton_Click);
             // 
             // labelGenericType
             // 
@@ -245,23 +246,25 @@
             this.label14.TabIndex = 54;
             this.label14.Text = "Type";
             // 
-            // button6
+            // NewActivityButton
             // 
-            this.button6.Location = new System.Drawing.Point(318, 307);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(58, 43);
-            this.button6.TabIndex = 53;
-            this.button6.Text = "New Activity";
-            this.button6.UseVisualStyleBackColor = true;
+            this.NewActivityButton.Location = new System.Drawing.Point(318, 307);
+            this.NewActivityButton.Name = "NewActivityButton";
+            this.NewActivityButton.Size = new System.Drawing.Size(58, 43);
+            this.NewActivityButton.TabIndex = 53;
+            this.NewActivityButton.Text = "New Activity";
+            this.NewActivityButton.UseVisualStyleBackColor = true;
+            this.NewActivityButton.Click += new System.EventHandler(this.NewActivityButton_Click);
             // 
-            // button5
+            // SaveActivityButton
             // 
-            this.button5.Location = new System.Drawing.Point(318, 356);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(59, 38);
-            this.button5.TabIndex = 52;
-            this.button5.Text = "Save Mods";
-            this.button5.UseVisualStyleBackColor = true;
+            this.SaveActivityButton.Location = new System.Drawing.Point(318, 356);
+            this.SaveActivityButton.Name = "SaveActivityButton";
+            this.SaveActivityButton.Size = new System.Drawing.Size(59, 38);
+            this.SaveActivityButton.TabIndex = 52;
+            this.SaveActivityButton.Text = "Save Mods";
+            this.SaveActivityButton.UseVisualStyleBackColor = true;
+            this.SaveActivityButton.Click += new System.EventHandler(this.SaveActivityButton_Click);
             // 
             // button4
             // 
@@ -448,13 +451,6 @@
             // checkedListBox1
             // 
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Arthur",
-            "Didier",
-            "Jean",
-            "Michel",
-            "Marie",
-            "François"});
             this.checkedListBox1.Location = new System.Drawing.Point(12, 185);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
@@ -673,7 +669,7 @@
             this.tableLayoutPanel3.ColumnCount = 3;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.13897F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.86103F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 198F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 202F));
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 59);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -851,13 +847,13 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button NewActivityButton;
+        private System.Windows.Forms.Button SaveActivityButton;
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label labelGenericType;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button ResetActivityButton;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label19;

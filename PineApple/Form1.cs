@@ -228,27 +228,10 @@ namespace PineApple
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-        }
-
-        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void flowLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
+            foreach (Astronaute astro in mission.getAstronautes())
+            {
+                checkedListBox1.Items.Add(astro.getName());
+            }
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -312,7 +295,15 @@ namespace PineApple
         //Remplissage des champs lors du clic sur une activité
         private void cmd2_Click(object sender, EventArgs e)
         {
-            Activity a = (Activity)(sender as Button).Tag; // Récupération de l'activité liée au bouton
+            //On réactive le bouton "new activity" s'il a été bloqué, et on bloque Save & Reset
+            NewActivityButton.Enabled = true;
+            SaveActivityButton.Enabled = false;
+            ResetActivityButton.Enabled = false;
+
+            // Récupération de l'activité liée au bouton
+            Activity a = (Activity)(sender as Button).Tag;
+
+            //Remplissage des champs de l'activité
             comboBoxStartHour.SelectedIndex = a.getStartDate().getHours();
             comboBoxStartMinutes.SelectedIndex = a.getStartDate().getMinutes() / 10;
             comboBoxEndHour.SelectedIndex = a.getEndDate().getHours();
@@ -320,14 +311,49 @@ namespace PineApple
             richTextBox1.Text = a.getDescription();
             labelGenericType.Text = a.getGenericType().ToString();
             comboBoxType.SelectedItem = a.getType().ToString();
-
-            // On déselectionne tous les astronautes pour resélectionner les bons
-            for (int i = 1; i < checkedListBox1.Items.Count; i++)
+            for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
-            foreach (int numAstro in a.getAstronautes())
+            foreach (int numAstro in a.getAstronautes()) //Pour resélectionner les bons
                 checkedListBox1.SetItemChecked(numAstro, true);
-                
+        }
 
+        private void NewActivityButton_Click(object sender, EventArgs e)
+        {
+            groupBox1.Text = "New Activity"; // Changement du nom pour montrer qu'on crée une activité
+            NewActivityButton.Enabled = false;
+            comboBoxStartHour.Text = "";
+            comboBoxStartMinutes.Text = "";
+            comboBoxEndHour.Text = "";
+            comboBoxEndMinutes.Text = "";
+            richTextBox1.Text = "";
+            labelGenericType.Text = "";
+            comboBoxType.Text = "";
+            for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
+                checkedListBox1.SetItemChecked(i, false);
+            numericUpDown1.ResetText();
+        }
+
+        private void SaveActivityButton_Click(object sender, EventArgs e)
+        {
+            groupBox1.Name = "Activity";
+
+
+            //mission.newActivity(richTextBox1.Text, )
+
+            //Réinitialisation des boutons après sauvegarde
+            NewActivityButton.Enabled = true;
+            SaveActivityButton.Enabled = false;
+            ResetActivityButton.Enabled = false;
+        }
+
+        private void ResetActivityButton_Click(object sender, EventArgs e)
+        {
+            groupBox1.Name = "Activity";
+
+            //Réinitialisation des boutons après reset
+            NewActivityButton.Enabled = true;
+            SaveActivityButton.Enabled = false;
+            ResetActivityButton.Enabled = false;
         }
     }
 }

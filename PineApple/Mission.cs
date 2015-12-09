@@ -123,6 +123,11 @@ namespace PineApple
 
         }
 
+        public List<Astronaute> getAstronautes()
+        {
+            return _astronautes;
+        }
+
         /// <summary>
         /// 
         /// </summary>
