@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace PineApple
 {
-    class GenericType
+    class Type
     {
-        private string _name;
-        private string[] _types;
+        private string _genericName;
+        private string[] _typeNames;
 
-        public GenericType(string name, string[] types)
+        public Type(string genericName, string[] types)
         {
-            _name = name;
-            _types = types;
+            _genericName = genericName;
+            _typeNames = types;
         }
         public string getName()
         {
-            return _name;
+            return _genericName;
         }
         public string[] getTypes()
         {
-            return _types;
+            return _typeNames;
         }
     }
 }

@@ -16,7 +16,7 @@ namespace PineApple
         private List<Astronaute> _astronautes;
         private int _numberOfDays;
         private string _name;
-        private List<GenericType> _genericTypes;
+        private List<Type> _genericTypes;
         private MDate _currentDay;
         private DateTime _firstDayEarth;
         private DateTime _CurrentDayEarth;
@@ -33,7 +33,7 @@ namespace PineApple
             _astronautes = new List<Astronaute>(0);
             _locations = new List<Location>(0);
             _days = new List<Day>(_numberOfDays);
-            _genericTypes = new List<GenericType>(0);
+            _genericTypes = new List<Type>(0);
             _name = name;
             string[] Living = {"Eating","Sleeping","Entertainment","Private","Health control","Medical Act"};
             string[] Science = {"Exploration","Briefing","Debriefing","Inside Experiment","Outside Experiment"};
@@ -41,12 +41,12 @@ namespace PineApple
             string[] Communication = {"Sending message","Receiving message"};
             string[] Repair = { "LSS", "Power systems", "Communication systems","Propulsion systems","Habitat","Space suit","Vehicle"};
             string[] Emergency = {"None"};
-            _genericTypes.Add(new GenericType("Living",Living));
-            _genericTypes.Add(new GenericType("Science", Science));
-            _genericTypes.Add(new GenericType("Maintenance", Maintenance));
-            _genericTypes.Add(new GenericType("Communication", Communication));
-            _genericTypes.Add(new GenericType("Repair", Repair));
-            _genericTypes.Add(new GenericType("Emergency", Emergency));
+            _genericTypes.Add(new Type("Living",Living));
+            _genericTypes.Add(new Type("Science", Science));
+            _genericTypes.Add(new Type("Maintenance", Maintenance));
+            _genericTypes.Add(new Type("Communication", Communication));
+            _genericTypes.Add(new Type("Repair", Repair));
+            _genericTypes.Add(new Type("Emergency", Emergency));
 
             _currentDay = new MDate(350,0,0);
         }
