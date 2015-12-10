@@ -59,7 +59,6 @@ namespace PineApple
             foreach (Type t in listeGenericType)
             {   
                 GT.Add(i.ToString(), t.getGenericType());
-                int j = 0;
                 i++;
             }
             searchGTypeCombo.DataSource = new BindingSource(GT, null);
@@ -171,25 +170,32 @@ namespace PineApple
                 tableLayoutPanel2.ColumnStyles.Add(cs);
             }
             List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
-            int j = 0;
+            tableLayoutPanel2.RowCount = mission.getAstronautes().Count;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30f));
             if (ListOfActivities.Count() != 0)
             {
                 foreach (Activity a in ListOfActivities)
                 {
-                    tableLayoutPanel2.RowCount += 1;
-                    tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 31));
 
-                    Button cmd2 = new Button();
-                    cmd2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
-                    cmd2.Click += new System.EventHandler(cmd2_Click);
-                    cmd2.Tag = a;
-                    cmd2.MaximumSize = new Size(500,200);
-                    cmd2.Dock = DockStyle.Fill;
-
-                    tableLayoutPanel2.Controls.Add(cmd2, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
-                    int length=lengthToColumn(a.getStartDate(), a.getEndDate());
-                    tableLayoutPanel2.SetColumnSpan(cmd2,length);
-                    j++;
+                    
+                    List<Astronaute> astronautes = mission.getAstronautes();
+                    for (int j = 0; j < mission.getAstronautes().Count;j++ )
+                        foreach(int astro in a.getAstronautes())
+                        {
+                            if(astro==mission.getAstronautes()[j].getNumber())
+                            {
+                                Button cmd2 = new Button();
+                                cmd2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                                cmd2.Click += new System.EventHandler(cmd2_Click);
+                                cmd2.Tag = a;
+                                cmd2.MaximumSize = new Size(500, 200);
+                                cmd2.Dock = DockStyle.Fill;
+                                tableLayoutPanel2.Controls.Add(cmd2, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
+                                int length = lengthToColumn(a.getStartDate(), a.getEndDate());
+                                tableLayoutPanel2.SetColumnSpan(cmd2, length);
+                            }
+                        }
+                    
                 }
             }
             tableLayoutPanel2.ResumeLayout();

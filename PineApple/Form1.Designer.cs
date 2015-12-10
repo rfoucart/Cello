@@ -828,7 +828,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(96, 27);
+            this.button3.Size = new System.Drawing.Size(101, 27);
             this.button3.TabIndex = 1;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = false;
