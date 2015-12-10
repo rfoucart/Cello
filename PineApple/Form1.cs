@@ -377,5 +377,9 @@ namespace PineApple
             SaveActivityButton.Enabled = false;
             ResetActivityButton.Enabled = false;
         }
+        private void search(object sender, EventArgs e)
+        {
+        }
+
     }
 }
