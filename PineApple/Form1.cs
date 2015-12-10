@@ -45,9 +45,28 @@ namespace PineApple
             //mission.defaultDay(1);
             //mission.WriteActivityXML();
             showDay(1);
-            
+            searchInit();
 
             dayHeaderInit();
+        }
+        private void searchInit()
+        {
+            List<Type> listeGenericType = mission.getActivityTypes();
+            
+            int i = 0;
+            Dictionary<string, string> GT = new Dictionary<string, string>();
+            Dictionary<string, string> T = new Dictionary<string, string>();
+            foreach (Type t in listeGenericType)
+            {   
+                GT.Add(i.ToString(), t.getGenericType());
+                int j = 0;
+                i++;
+            }
+            searchGTypeCombo.DataSource = new BindingSource(GT, null);
+            searchGTypeCombo.DisplayMember = "Value";
+            searchGTypeCombo.ValueMember = "Key";
+            string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+         
         }
         private void globalPanelInit()
         {
@@ -164,6 +183,8 @@ namespace PineApple
                     cmd2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
                     cmd2.Click += new System.EventHandler(cmd2_Click);
                     cmd2.Tag = a;
+                    cmd2.MaximumSize = new Size(500,200);
+                    cmd2.Dock = DockStyle.Fill;
 
                     tableLayoutPanel2.Controls.Add(cmd2, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
                     int length=lengthToColumn(a.getStartDate(), a.getEndDate());

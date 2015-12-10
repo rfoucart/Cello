@@ -50,6 +50,10 @@ namespace PineApple
 
             _currentDay = new MDate(350,0,0);
         }
+        public List<Type> getActivityTypes()
+        {
+            return _genericTypes;
+        }
         public MDate getCurrentDay()
         {
             return _currentDay;

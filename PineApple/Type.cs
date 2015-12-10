@@ -16,6 +16,10 @@ namespace PineApple
             _genericName = genericName;
             _typeNames = types;
         }
+        public string getGenericType()
+        {
+            return _genericName;
+        }
         public string getName()
         {
             return _genericName;
