@@ -166,7 +166,8 @@ namespace PineApple
                     cmd2.Tag = a;
 
                     tableLayoutPanel2.Controls.Add(cmd2, hoursToColumn(a.getStartDate().getHours(), a.getStartDate().getMinutes()), j);
-                    tableLayoutPanel2.SetColumnSpan(cmd2, lengthToColumn(a.getStartDate(), a.getEndDate()));
+                    int length=lengthToColumn(a.getStartDate(), a.getEndDate());
+                    tableLayoutPanel2.SetColumnSpan(cmd2,length);
                     j++;
                 }
             }
@@ -178,11 +179,11 @@ namespace PineApple
         }
         private int lengthToColumn(MDate d, MDate f)
         {
-            double D = d.getHours() + d.getMinutes() / 60.0;
-            double F = f.getHours() + f.getMinutes() / 60.0;
+            double D = d.getHours()*60 + d.getMinutes();
+            double F = f.getHours()*60 + f.getMinutes();
             double DF = F - D;
-            int df=(int)((DF*60)/10);
-            return   6 * (int)(DF) + df;
+            int df=(int)(DF/10);
+            return  df ;
         }
         private void WriteMissionXML()
         {
