@@ -49,6 +49,7 @@ namespace PineApple
 
             dayHeaderInit();
         }
+        //Initialisation/remplissage du groupbox de recherche
         private void searchInit()
         {
             List<Type> listeGenericType = mission.getActivityTypes();
@@ -88,6 +89,7 @@ namespace PineApple
                 }
             }
         }
+        //Affichage de la Bande des heures dans la partie jour
         private void dayHeaderInit()
         {
             
@@ -119,17 +121,12 @@ namespace PineApple
                         Text2.AutoSize = false;
                         tableLayoutPanel1.Controls.Add(Text2, x*6, 0);
                         tableLayoutPanel1.SetColumnSpan(Text2, 6);
-                        
-                        
-                        /*Button cmd = new Button();
-                        cmd.Text = string.Format("{0}H", x);
-                        cmd.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
-                        panel1.Controls.Add(cmd, x, 0);
-                        panel1.SetColumnSpan(cmd, 6);*/
-                        
+                       
             }
             tableLayoutPanel1.ResumeLayout();
         }
+        //renomme les boutons (de 50 en 50 ) 
+        //probléme de vitesse pour l'instant
         public void panelActu(int i)
         {
             if(i>=1 && i<=10)
@@ -153,6 +150,7 @@ namespace PineApple
                }
             }
         }
+        //Actualise la partie jour en fonction du jour selectionné sur la partie calendrier. 
         public void showDay(int day)
         {
             tableLayoutPanel2.SuspendLayout();
@@ -179,10 +177,11 @@ namespace PineApple
 
                     
                     List<Astronaute> astronautes = mission.getAstronautes();
-                    for (int j = 0; j < mission.getAstronautes().Count;j++ )
-                        foreach(int astro in a.getAstronautes())
+                    for (int j = 0; j < mission.getAstronautes().Count; j++)
+                    {
+                        foreach (int astro in a.getAstronautes())
                         {
-                            if(astro==mission.getAstronautes()[j].getNumber())
+                            if (astro == mission.getAstronautes()[j].getNumber())
                             {
                                 Button cmd2 = new Button();
                                 cmd2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
@@ -195,11 +194,12 @@ namespace PineApple
                                 tableLayoutPanel2.SetColumnSpan(cmd2, length);
                             }
                         }
-                    
+                    }
                 }
             }
             tableLayoutPanel2.ResumeLayout();
         }
+        //Fait correspondre temps et colonnes sur le tableau d'affichage des jours
         private int hoursToColumn(int hours, int minutes)
         {
             return 6 * hours + minutes / 10;
@@ -212,6 +212,7 @@ namespace PineApple
             int df=(int)(DF/10);
             return  df ;
         }
+        //Ecrit la mission en xml
         private void WriteMissionXML()
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -222,6 +223,8 @@ namespace PineApple
 
             xmlDoc.Save("./mission.xml");
         }
+
+        //Charge le fichier mission.xml
         private void ReadMissionXML()
         {
 
@@ -288,6 +291,7 @@ namespace PineApple
             }
         }
 
+        //Affichage du jour aprés click sur le calendrier
         private void button3_Click(object sender, EventArgs e)
         {
             Button A = sender as Button;
@@ -373,7 +377,6 @@ namespace PineApple
             SaveActivityButton.Enabled = false;
             ResetActivityButton.Enabled = false;
         }
-
         private void ResetActivityButton_Click(object sender, EventArgs e)
         {
             groupBox1.Name = "Activity";
@@ -383,6 +386,8 @@ namespace PineApple
             SaveActivityButton.Enabled = false;
             ResetActivityButton.Enabled = false;
         }
+
+        //Fonction recherche aprés click sur le bouton search du panel search.
         private void search(object sender, EventArgs e)
         {
         }
