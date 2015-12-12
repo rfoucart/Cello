@@ -65,7 +65,7 @@ namespace PineApple
             searchGTypeCombo.DataSource = new BindingSource(GT, null);
             searchGTypeCombo.DisplayMember = "Value";
             searchGTypeCombo.ValueMember = "Key";
-            string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
          
         }
         private void globalPanelInit()
@@ -391,6 +391,35 @@ namespace PineApple
         private void search(object sender, EventArgs e)
         {
         }
+        //Lorsque un type generique est selectionné on bloque le champ keyword
+        // et on affiche la liste cohérente dans type
+        private void searchGTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox a = sender as ComboBox;
+
+            int key = int.Parse(((KeyValuePair<string, string>)a.SelectedItem).Key);
+
+            List<Type> listeGenericType = mission.getActivityTypes();
+
+            int i = 0;
+            Dictionary<string, string> T = new Dictionary<string, string>();
+            foreach (string t in listeGenericType[key].getTypes())
+            {
+                T.Add(i.ToString(), t);
+                i++;
+            }
+            searchTypeCombo.DataSource = new BindingSource(T, null);
+            searchTypeCombo.DisplayMember = "Value";
+            searchTypeCombo.ValueMember = "Key";
+            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+
+        }
+        //Lorsque un keyword est tapé, on bloque les champs type et generic type.
+
+
+
+        //Lorsque un premier sol de la période est selectionné, on débloque la selection du 2eme jour de la période.
+
 
     }
 }
