@@ -46,6 +46,7 @@ namespace PineApple
             //mission.WriteActivityXML();
             showDay(1);
             searchInit();
+            updateDateNow();
 
             dayHeaderInit();
         }
@@ -65,8 +66,14 @@ namespace PineApple
             searchGTypeCombo.DataSource = new BindingSource(GT, null);
             searchGTypeCombo.DisplayMember = "Value";
             searchGTypeCombo.ValueMember = "Key";
-            string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
          
+        }
+        private void updateDateNow()
+        {
+            DateTime now = DateTime.Now;
+            label29.Text = now.ToString();
+            label30.Text = mission.earthToMarsDate(now).getDay().ToString();
         }
         private void globalPanelInit()
         {
@@ -95,21 +102,19 @@ namespace PineApple
             
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.ColumnCount = 156; // <<<-------
+            tableLayoutPanel1.ColumnCount = 148; // <<<-------
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
+            tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.RowStyles.Clear();
             for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
             {
-                ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f / (float)(tableLayoutPanel1.ColumnCount));
+                ColumnStyle cs = new ColumnStyle(SizeType.Absolute, 3.5f);
                 tableLayoutPanel1.ColumnStyles.Add(cs);
             }
             tableLayoutPanel1.RowStyles.Clear();
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute,31));
-            //tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 30));
-            //tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30));
             for( int x=0; x<25; x++)
             {
                         Label Text2 = new Label();
@@ -169,13 +174,15 @@ namespace PineApple
             }
             List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
             tableLayoutPanel2.RowCount = mission.getAstronautes().Count;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30f));
+            for (int i = 0; i < tableLayoutPanel2.RowCount;i++ )
+            {
+                tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / tableLayoutPanel2.RowCount));
+            }
+
             if (ListOfActivities.Count() != 0)
             {
                 foreach (Activity a in ListOfActivities)
                 {
-
-                    
                     List<Astronaute> astronautes = mission.getAstronautes();
                     for (int j = 0; j < mission.getAstronautes().Count; j++)
                     {
@@ -334,7 +341,12 @@ namespace PineApple
 
             // Récupération de l'activité liée au bouton
             Activity a = (Activity)(sender as Button).Tag;
-
+            //Appel de la fonction de remplissage
+            fillActivityPanel(a);
+        }
+        //rempli les champs juste grace au numero de l'activité  tout les cas 
+        private void fillActivityPanel(Activity a)
+        {
             //Remplissage des champs de l'activité
             comboBoxStartHour.SelectedIndex = a.getStartDate().getHours();
             comboBoxStartMinutes.SelectedIndex = a.getStartDate().getMinutes() / 10;
@@ -348,7 +360,7 @@ namespace PineApple
             foreach (int numAstro in a.getAstronautes()) //Pour resélectionner les bons
                 checkedListBox1.SetItemChecked(numAstro, true);
         }
-
+        
         private void NewActivityButton_Click(object sender, EventArgs e)
         {
             groupBox1.Text = "New Activity"; // Changement du nom pour montrer qu'on crée une activité
@@ -390,7 +402,105 @@ namespace PineApple
         //Fonction recherche aprés click sur le bouton search du panel search.
         private void search(object sender, EventArgs e)
         {
-        }
+            searchPanel.SuspendLayout();
+            List<Mission.searchResult> results = new List<Mission.searchResult>(0);
+            if(searchGTypeCombo.Enabled==true)
+            {
+                results = mission.searchByType(int.Parse(((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Key), int.Parse(((KeyValuePair<string, string>)searchTypeCombo.SelectedItem).Key), Convert.ToInt32(numericUpDown2.Value),  Convert.ToInt32(numericUpDown3.Value));
+            }
+            else
+            {
+                results = mission.searchByKeyword(textBox4.Text, Convert.ToInt32(numericUpDown2.Value),  Convert.ToInt32(numericUpDown3.Value));
+            }
+            searchPanel.Controls.Clear();
+            searchPanel.RowCount = results.Count; // <<<-------
+            searchPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            searchPanel.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//.AddColumns;
+            searchPanel.RowStyles.Clear();
+            for (int i = 0; i < searchPanel.RowCount; i++)
+            {
+                RowStyle cs = new RowStyle(SizeType.Percent, 100f / (float)(searchPanel.RowCount));
+                searchPanel.RowStyles.Add(cs);
+            }
+            if (results.Count() != 0)
+            {
+                int j = 0;
+                foreach (Mission.searchResult a in results)
+                {
+                    Label lb = new Label();
+                    lb.Text = a.types;
+                    lb.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb.Click += new System.EventHandler(clicOnSearchResult);
+                    lb.Tag = a.a;
+                    lb.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb, 0, j);
+                    Label lb1 = new Label();
+                    lb1.Text = a.startDate;
+                    lb1.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb1.Click += new System.EventHandler(clicOnSearchResult);
+                    lb1.Tag = a.a;
+                    lb1.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb1, 1, j);
+                    Label lb2 = new Label();
+                    lb2.Text = a.endDate;
+                    lb2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb2.Click += new System.EventHandler(clicOnSearchResult);
+                    lb2.Tag = a.a;
+                    lb2.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb2, 2, j);
+                    j++;
+                }
+            }
+            searchPanel.ResumeLayout();
 
+        }
+        private void clicOnSearchResult(object sender, EventArgs e)
+        {
+            fillActivityPanel((sender as Label).Tag as Activity);
+        }
+        //Lorsque un type generique est selectionné on bloque le champ keyword
+        // et on affiche la liste cohérente dans type
+        private void searchGTypeCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox a = sender as ComboBox;
+
+            int key = int.Parse(((KeyValuePair<string, string>)a.SelectedItem).Key);
+
+            List<Type> listeGenericType = mission.getActivityTypes();
+
+            int i = 0;
+            Dictionary<string, string> T = new Dictionary<string, string>();
+            foreach (string t in listeGenericType[key].getTypes())
+            {
+                T.Add(i.ToString(), t);
+                i++;
+            }
+            searchTypeCombo.DataSource = new BindingSource(T, null);
+            searchTypeCombo.DisplayMember = "Value";
+            searchTypeCombo.ValueMember = "Key";
+            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+
+        }
+        //Lorsque un keyword est tapé, on bloque les champs type et generic type.
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            TextBox t =sender as TextBox;
+
+            if (t.Text.Length != 0)
+            {
+                searchGTypeCombo.Enabled = false;
+                searchTypeCombo.Enabled = false;
+            }
+            else
+            {
+                searchGTypeCombo.Enabled = true;
+                searchTypeCombo.Enabled = true;
+            }
+        }
+        //Lorsque un premier sol de la période est selectionné, on débloque la selection du 2eme jour de la période.
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+            numericUpDown3.Minimum = (sender as NumericUpDown).Value;
+        }
     }
 }

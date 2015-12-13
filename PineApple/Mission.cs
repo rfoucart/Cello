@@ -19,7 +19,7 @@ namespace PineApple
         private List<Type> _genericTypes;
         private MDate _currentDay;
         private DateTime _firstDayEarth;
-        private DateTime _CurrentDayEarth;
+        private DateTime _currentDayEarth;
 
         
         /// <summary>
@@ -27,7 +27,7 @@ namespace PineApple
         /// </summary>
         public Mission(string name, int numberOfDays)
         {
-            _CurrentDayEarth = DateTime.Now;
+            _currentDayEarth = DateTime.Now;
             _numberOfDays = numberOfDays;
             _activities = new List<Activity>(0);
             _astronautes = new List<Astronaute>(0);
@@ -78,13 +78,12 @@ namespace PineApple
         {
             List<int> astro=_astronautes.Select(a=>a.getNumber()).ToList();
 
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
+            _activities.Add(new Activity(" ", 0, 0, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
             _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
+            _activities.Add(new Activity(" ", 0, 2, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
             _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
+            _activities.Add(new Activity(" ", 0, 3, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
+            _activities.Add(new Activity(" ", 0, 3, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
             _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
 
         }
@@ -112,21 +111,6 @@ namespace PineApple
         {
             _astronautes.Add(new Astronaute(name,number));
         }
-        /// <summary>
-        /// fill the days and time unites from the activities list
-        /// </summary>
-        public void fillTimeUnites()
-        {
-
-        }
-        /// <summary>
-        /// fill activities from the XML file
-        /// </summary>
-        public void fillActivities()
-        {
-
-        }
-
         public List<Astronaute> getAstronautes()
         {
             return _astronautes;
@@ -135,45 +119,48 @@ namespace PineApple
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="searchDates"></param>
-        /// <returns></returns>
-        public List<Activity> searchByPeriod(MDate[] searchDates)
-        {
-            return new List<Activity>(0);
-        }
-
-        /// <summary>
-        /// search method by day
-        /// </summary>
-        /// <param name="searchDate"></param>
-        /// <returns></returns>
-        public List<Activity> searchByDate(MDate searchDate)
-        {
-            return new List<Activity>(0);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        public List<Activity> searchByType(string type)
-        {
-            return new List<Activity>(0);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="genericType"></param>
         /// <returns></returns>
-        public List<Activity> searchByGenericType(string genericType)
+        public List<searchResult> searchByType(int GT, int T, int periodStart, int periodEnd)
         {
-            return new List<Activity>(0);
+            List<Activity> result = _activities.Where(x=> x.getType()==T && x.getGenericType()==GT && periodStart <= x.getDay() && periodEnd >= x.getDay()).ToList();
+            List<searchResult> Result = new List<searchResult>(0);
+            foreach(Activity a in result)
+            {
+                searchResult r=new searchResult();
+                r.types = string.Format("{0} - {1}", _genericTypes[GT].getName(), _genericTypes[GT].getTypes()[T]);
+                r.startDate = a.getStartDate().printMDate();
+                r.endDate = a.getEndDate().printMDate();
+                r.a=a;
+                Result.Add(r);
+            }
+            return Result ;
+        }
+        public List<searchResult> searchByKeyword(string keyword, int periodStart, int periodEnd)
+        {
+            List<Activity> result = _activities.Where(x => x.getDescription().IndexOf(keyword)!=-1 && periodStart <= x.getDay() && periodEnd >= x.getDay()).ToList();
+            List<searchResult> Result = new List<searchResult>(0);
+            foreach (Activity a in result)
+            {
+                searchResult r = new searchResult();
+                r.types = string.Format("{0} - {1}", _genericTypes[a.getGenericType()].getName(), _genericTypes[a.getGenericType()].getTypes()[a.getType()]);
+                r.startDate = a.getStartDate().printMDate();
+                r.endDate = a.getEndDate().printMDate();
+                r.a = a;
+                Result.Add(r);
+            }
+            return Result;
+
         }
         public List<Activity> selectActivitiesByDay(int day)
         {
             return _activities.Where(x => x.getDay() == day).ToList();
+        }
+        public void setCurrentDate()
+        {
+            _currentDayEarth = DateTime.Now;
+            _currentDay = earthToMarsDate(_currentDayEarth);
+
         }
 
 
@@ -257,6 +244,7 @@ namespace PineApple
             //Add the ref number to the class
             Activity.setRefNumber(int.Parse(refNum.InnerText));
         }
+        //Date martienne en fonction de la date terrestre 
         public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
@@ -265,6 +253,19 @@ namespace PineApple
             double minutes =(hours - (int)(hours))*60;
             
             return new MDate((int)(days),(int)(hours),(int)(minutes));
+        }
+        //Terrestre en fonction de la date martienne
+        public string marsToEarthDate()
+        {
+            return ""; 
+        }
+
+        public struct searchResult
+        {
+            public string types;
+            public string startDate;
+            public string endDate;
+            public Activity a;
         }
     }
 }

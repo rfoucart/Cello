@@ -75,7 +75,6 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.searchTypeCombo = new System.Windows.Forms.ComboBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -88,10 +87,15 @@
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
             this.globalPanel = new PineApple.DoubleBufferedTableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2 = new PineApple.DoubleBufferedTableLayoutPanel();
             this.tableLayoutPanel1 = new PineApple.DoubleBufferedTableLayoutPanel();
+            this.searchPanel = new PineApple.DoubleBufferedTableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictNanediVallis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -538,6 +542,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.groupBox2.Controls.Add(this.searchPanel);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.searchGTypeCombo);
@@ -548,7 +553,6 @@
             this.groupBox2.Controls.Add(this.numericUpDown2);
             this.groupBox2.Controls.Add(this.label17);
             this.groupBox2.Controls.Add(this.searchTypeCombo);
-            this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Controls.Add(this.tableLayoutPanel3);
             this.groupBox2.Location = new System.Drawing.Point(12, 396);
             this.groupBox2.Name = "groupBox2";
@@ -559,7 +563,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(410, 19);
+            this.button1.Location = new System.Drawing.Point(450, 19);
             this.button1.Margin = new System.Windows.Forms.Padding(0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
@@ -571,7 +575,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 50);
+            this.label16.Location = new System.Drawing.Point(18, 19);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(68, 13);
             this.label16.TabIndex = 10;
@@ -580,10 +584,11 @@
             // searchGTypeCombo
             // 
             this.searchGTypeCombo.FormattingEnabled = true;
-            this.searchGTypeCombo.Location = new System.Drawing.Point(79, 47);
+            this.searchGTypeCombo.Location = new System.Drawing.Point(92, 21);
             this.searchGTypeCombo.Name = "searchGTypeCombo";
             this.searchGTypeCombo.Size = new System.Drawing.Size(121, 21);
             this.searchGTypeCombo.TabIndex = 9;
+            this.searchGTypeCombo.SelectedIndexChanged += new System.EventHandler(this.searchGTypeCombo_SelectedIndexChanged);
             // 
             // textBox4
             // 
@@ -591,6 +596,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(65, 20);
             this.textBox4.TabIndex = 8;
+            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label19
             // 
@@ -618,9 +624,19 @@
             0,
             0,
             0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(57, 20);
             this.numericUpDown3.TabIndex = 5;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // numericUpDown2
             // 
@@ -630,14 +646,25 @@
             0,
             0,
             0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(57, 20);
             this.numericUpDown2.TabIndex = 4;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 22);
+            this.label17.Location = new System.Drawing.Point(18, 50);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(31, 13);
             this.label17.TabIndex = 3;
@@ -646,26 +673,10 @@
             // searchTypeCombo
             // 
             this.searchTypeCombo.FormattingEnabled = true;
-            this.searchTypeCombo.Location = new System.Drawing.Point(79, 18);
+            this.searchTypeCombo.Location = new System.Drawing.Point(92, 48);
             this.searchTypeCombo.Name = "searchTypeCombo";
             this.searchTypeCombo.Size = new System.Drawing.Size(121, 21);
             this.searchTypeCombo.TabIndex = 2;
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel4.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.tableLayoutPanel4.ColumnCount = 3;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 170F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 199F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 102);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(539, 231);
-            this.tableLayoutPanel4.TabIndex = 1;
             // 
             // tableLayoutPanel3
             // 
@@ -760,7 +771,7 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(719, 9);
+            this.label26.Location = new System.Drawing.Point(751, 8);
             this.label26.Name = "label26";
             this.label26.Size = new System.Drawing.Size(36, 13);
             this.label26.TabIndex = 63;
@@ -769,7 +780,7 @@
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(587, 9);
+            this.label27.Location = new System.Drawing.Point(619, 8);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(38, 13);
             this.label27.TabIndex = 62;
@@ -778,7 +789,7 @@
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(528, 9);
+            this.label28.Location = new System.Drawing.Point(560, 8);
             this.label28.Name = "label28";
             this.label28.Size = new System.Drawing.Size(55, 13);
             this.label28.TabIndex = 61;
@@ -794,8 +805,44 @@
             this.tableLayoutPanel5.RowCount = 2;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(29, 188);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(29, 182);
             this.tableLayoutPanel5.TabIndex = 65;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(94, 8);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(41, 13);
+            this.label29.TabIndex = 66;
+            this.label29.Text = "label29";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(245, 8);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(41, 13);
+            this.label30.TabIndex = 67;
+            this.label30.Text = "label30";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(663, 7);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(41, 13);
+            this.label31.TabIndex = 68;
+            this.label31.Text = "label31";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(793, 8);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(41, 13);
+            this.label32.TabIndex = 69;
+            this.label32.Text = "label32";
             // 
             // globalPanel
             // 
@@ -846,7 +893,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(662, 188);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(640, 182);
             this.tableLayoutPanel2.TabIndex = 55;
             // 
             // tableLayoutPanel1
@@ -865,14 +912,33 @@
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(663, 33);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(657, 33);
             this.tableLayoutPanel1.TabIndex = 54;
+            // 
+            // searchPanel
+            // 
+            this.searchPanel.AutoScroll = true;
+            this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.searchPanel.ColumnCount = 3;
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.searchPanel.Location = new System.Drawing.Point(2, 102);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.RowCount = 1;
+            this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.searchPanel.Size = new System.Drawing.Size(537, 231);
+            this.searchPanel.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1264, 738);
+            this.Controls.Add(this.label32);
+            this.Controls.Add(this.label31);
+            this.Controls.Add(this.label30);
+            this.Controls.Add(this.label29);
             this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.globalPanel);
             this.Controls.Add(this.label26);
@@ -887,7 +953,7 @@
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PreviousButton);
             this.MaximumSize = new System.Drawing.Size(1280, 777);
-            this.MinimumSize = new System.Drawing.Size(1278, 775);
+            this.MinimumSize = new System.Drawing.Size(1278, 758);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -939,7 +1005,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button NewActivityButton;
@@ -973,6 +1038,11 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label32;
+        private DoubleBufferedTableLayoutPanel searchPanel;
     }
 }
 
