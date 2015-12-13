@@ -86,7 +86,6 @@
             this.label26 = new System.Windows.Forms.Label();
             this.label27 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
@@ -96,6 +95,7 @@
             this.tableLayoutPanel2 = new PineApple.DoubleBufferedTableLayoutPanel();
             this.tableLayoutPanel1 = new PineApple.DoubleBufferedTableLayoutPanel();
             this.searchPanel = new PineApple.DoubleBufferedTableLayoutPanel();
+            this.astroNames = new PineApple.DoubleBufferedTableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictNanediVallis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -732,6 +732,7 @@
             // groupBox3
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Controls.Add(this.astroNames);
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
             this.groupBox3.Controls.Add(this.tableLayoutPanel1);
             this.groupBox3.Location = new System.Drawing.Point(557, 28);
@@ -794,19 +795,6 @@
             this.label28.Size = new System.Drawing.Size(55, 13);
             this.label28.TabIndex = 61;
             this.label28.Text = "Selected :";
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.5F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.5F));
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(563, 91);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 2;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(29, 182);
-            this.tableLayoutPanel5.TabIndex = 65;
             // 
             // label29
             // 
@@ -888,12 +876,12 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(33, 63);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(79, 63);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(640, 182);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(611, 182);
             this.tableLayoutPanel2.TabIndex = 55;
             // 
             // tableLayoutPanel1
@@ -906,13 +894,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(33, 26);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(79, 26);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(657, 33);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(611, 33);
             this.tableLayoutPanel1.TabIndex = 54;
             // 
             // searchPanel
@@ -922,13 +910,24 @@
             this.searchPanel.ColumnCount = 3;
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
             this.searchPanel.Location = new System.Drawing.Point(2, 102);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.RowCount = 1;
             this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.searchPanel.Size = new System.Drawing.Size(537, 231);
             this.searchPanel.TabIndex = 12;
+            // 
+            // astroNames
+            // 
+            this.astroNames.ColumnCount = 1;
+            this.astroNames.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.astroNames.Location = new System.Drawing.Point(6, 63);
+            this.astroNames.Name = "astroNames";
+            this.astroNames.RowCount = 1;
+            this.astroNames.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.astroNames.Size = new System.Drawing.Size(67, 182);
+            this.astroNames.TabIndex = 56;
             // 
             // Form1
             // 
@@ -939,7 +938,6 @@
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label29);
-            this.Controls.Add(this.tableLayoutPanel5);
             this.Controls.Add(this.globalPanel);
             this.Controls.Add(this.label26);
             this.Controls.Add(this.label27);
@@ -1037,12 +1035,12 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
         private DoubleBufferedTableLayoutPanel searchPanel;
+        private DoubleBufferedTableLayoutPanel astroNames;
     }
 }
 

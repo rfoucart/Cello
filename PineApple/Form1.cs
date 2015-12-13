@@ -103,15 +103,15 @@ namespace PineApple
             
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.ColumnCount = 148; // <<<-------
-            tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.ColumnCount = 150; // <<<-------
+            //tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.RowStyles.Clear();
             for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
             {
-                ColumnStyle cs = new ColumnStyle(SizeType.Absolute, 3.5f);
+                ColumnStyle cs = new ColumnStyle(SizeType.Percent,100f/tableLayoutPanel1.ColumnCount );
                 tableLayoutPanel1.ColumnStyles.Add(cs);
             }
             tableLayoutPanel1.RowStyles.Clear();
@@ -121,15 +121,48 @@ namespace PineApple
                         Label Text2 = new Label();
                         
                         Text2.Text = x+"H";
+                        Text2.Font = new Font("Helvetica", 7);
+                        Text2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                         Text2.BackColor = Color.LightCyan;
                         Text2.Margin = new Padding(0, 0, 0, 0);
                         Text2.Height = 30;
                         Text2.AutoSize = false;
                         tableLayoutPanel1.Controls.Add(Text2, x*6, 0);
                         tableLayoutPanel1.SetColumnSpan(Text2, 6);
+                        if(x==24)
+                        {
+                            tableLayoutPanel1.SetColumnSpan(Text2, 4);   
+                        }
                        
             }
             tableLayoutPanel1.ResumeLayout();
+
+            astroNames.SuspendLayout();
+            astroNames.Controls.Clear();
+            astroNames.ColumnCount = 1; // <<<-------
+            astroNames.RowCount = mission.getAstronautes().Count;
+            astroNames.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
+
+            astroNames.RowStyles.Clear();
+            for (int i = 0; i < astroNames.RowCount; i++)
+            {
+                astroNames.RowStyles.Add(new RowStyle(SizeType.Percent, 100f/astroNames.RowCount));
+               
+            }
+            for (int i = 0; i < astroNames.RowCount; i++)
+            {
+                Label Text2 = new Label();
+                Text2.Text = mission.getAstronautes()[i].getName();
+                Text2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+                Text2.BackColor = Color.LightCyan;
+                Text2.Margin = new Padding(0, 0, 0, 0);
+                Text2.Height = 30;
+                Text2.AutoSize = false;
+                Text2.Dock = DockStyle.Fill;
+                astroNames.Controls.Add(Text2, 0, i);
+            }
+            astroNames.ResumeLayout();
+
         }
         //renomme les boutons (de 50 en 50 ) 
         //probléme de vitesse pour l'instant
@@ -172,8 +205,7 @@ namespace PineApple
         {
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel2.Controls.Clear();
-            tableLayoutPanel2.ColumnCount = 156; // <<<-------
-            tableLayoutPanel2.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            tableLayoutPanel2.ColumnCount = 150; // <<<-------
             tableLayoutPanel2.RowCount = 0;
             tableLayoutPanel2.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//.AddColumns;
             tableLayoutPanel2.ColumnStyles.Clear();
@@ -181,7 +213,7 @@ namespace PineApple
             tableLayoutPanel2.AutoScrollMargin = new Size(0,0);
             for (int i = 0; i < tableLayoutPanel2.ColumnCount; i++)
             {
-                ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f / (float)(tableLayoutPanel2.ColumnCount));
+                ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f/tableLayoutPanel2.ColumnCount);
                 tableLayoutPanel2.ColumnStyles.Add(cs);
             }
             List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
