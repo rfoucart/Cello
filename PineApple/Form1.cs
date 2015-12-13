@@ -102,15 +102,15 @@ namespace PineApple
             
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel1.Controls.Clear();
-            tableLayoutPanel1.ColumnCount = 156; // <<<-------
+            tableLayoutPanel1.ColumnCount = 148; // <<<-------
             tableLayoutPanel1.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
+            tableLayoutPanel1.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//TableLayoutPanelGrowStyle.FixedSize;//.AddColumns;
             tableLayoutPanel1.ColumnStyles.Clear();
             tableLayoutPanel1.RowStyles.Clear();
             for (int i = 0; i < tableLayoutPanel1.ColumnCount; i++)
             {
-                ColumnStyle cs = new ColumnStyle(SizeType.Percent, 100f / (float)(tableLayoutPanel1.ColumnCount));
+                ColumnStyle cs = new ColumnStyle(SizeType.Absolute, 3.5f);
                 tableLayoutPanel1.ColumnStyles.Add(cs);
             }
             tableLayoutPanel1.RowStyles.Clear();
@@ -174,13 +174,15 @@ namespace PineApple
             }
             List<Activity> ListOfActivities = mission.selectActivitiesByDay(day);
             tableLayoutPanel2.RowCount = mission.getAstronautes().Count;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 30f));
+            for (int i = 0; i < tableLayoutPanel2.RowCount;i++ )
+            {
+                tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100 / tableLayoutPanel2.RowCount));
+            }
+
             if (ListOfActivities.Count() != 0)
             {
                 foreach (Activity a in ListOfActivities)
                 {
-
-                    
                     List<Astronaute> astronautes = mission.getAstronautes();
                     for (int j = 0; j < mission.getAstronautes().Count; j++)
                     {
@@ -400,55 +402,56 @@ namespace PineApple
         //Fonction recherche aprés click sur le bouton search du panel search.
         private void search(object sender, EventArgs e)
         {
+            searchPanel.SuspendLayout();
+            List<Mission.searchResult> results = new List<Mission.searchResult>(0);
             if(searchGTypeCombo.Enabled==true)
             {
-                List<Mission.searchResult> results = mission.searchByType(int.Parse(((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Key), int.Parse(((KeyValuePair<string, string>)searchTypeCombo.SelectedItem).Key));
-
-                    searchPanel.SuspendLayout();
-                    searchPanel.Controls.Clear();
-                    searchPanel.RowCount = results.Count; // <<<-------
-                    searchPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
-                    searchPanel.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//.AddColumns;
-                    searchPanel.RowStyles.Clear();
-                    for (int i = 0; i < searchPanel.RowCount; i++)
-                    {
-                        RowStyle cs = new RowStyle(SizeType.Percent, 100f / (float)(searchPanel.RowCount));
-                        searchPanel.RowStyles.Add(cs);
-                    }
-                    if (results.Count() != 0)
-                    {   int j = 0;
-                        foreach(Mission.searchResult a in results)
-                        {       
-                                        Label lb = new Label();
-                                        lb.Text = a.types;
-                                        lb.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
-                                        lb.Click += new System.EventHandler(clicOnSearchResult);
-                                        lb.Tag = a.a;
-                                        lb.Dock = DockStyle.Fill;
-                                        searchPanel.Controls.Add(lb, 0 ,j);
-                                        Label lb1= new Label();
-                                        lb1.Text = a.startDate;
-                                        lb1.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
-                                        lb1.Click += new System.EventHandler(clicOnSearchResult);
-                                        lb1.Tag = a.a;
-                                        lb1.Dock = DockStyle.Fill;
-                                        searchPanel.Controls.Add(lb1, 1 ,j);
-                                        Label lb2= new Label();
-                                        lb2.Text = a.endDate;
-                                        lb2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
-                                        lb2.Click += new System.EventHandler(clicOnSearchResult);
-                                        lb2.Tag = a.a;
-                                        lb2.Dock = DockStyle.Fill;
-                                        searchPanel.Controls.Add(lb2, 2 ,j);
-                        j++;                                   
-                    }                       
-                }
-                searchPanel.ResumeLayout();
+                results = mission.searchByType(int.Parse(((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Key), int.Parse(((KeyValuePair<string, string>)searchTypeCombo.SelectedItem).Key), Convert.ToInt32(numericUpDown2.Value),  Convert.ToInt32(numericUpDown3.Value));
             }
             else
             {
-                
+                results = mission.searchByKeyword(textBox4.Text, Convert.ToInt32(numericUpDown2.Value),  Convert.ToInt32(numericUpDown3.Value));
             }
+            searchPanel.Controls.Clear();
+            searchPanel.RowCount = results.Count; // <<<-------
+            searchPanel.CellBorderStyle = TableLayoutPanelCellBorderStyle.Single;
+            searchPanel.GrowStyle = TableLayoutPanelGrowStyle.AddColumns;//.AddColumns;
+            searchPanel.RowStyles.Clear();
+            for (int i = 0; i < searchPanel.RowCount; i++)
+            {
+                RowStyle cs = new RowStyle(SizeType.Percent, 100f / (float)(searchPanel.RowCount));
+                searchPanel.RowStyles.Add(cs);
+            }
+            if (results.Count() != 0)
+            {
+                int j = 0;
+                foreach (Mission.searchResult a in results)
+                {
+                    Label lb = new Label();
+                    lb.Text = a.types;
+                    lb.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb.Click += new System.EventHandler(clicOnSearchResult);
+                    lb.Tag = a.a;
+                    lb.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb, 0, j);
+                    Label lb1 = new Label();
+                    lb1.Text = a.startDate;
+                    lb1.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb1.Click += new System.EventHandler(clicOnSearchResult);
+                    lb1.Tag = a.a;
+                    lb1.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb1, 1, j);
+                    Label lb2 = new Label();
+                    lb2.Text = a.endDate;
+                    lb2.Margin = new Padding(0, 0, 0, 0);//Finally, add the control to the correct location in the table
+                    lb2.Click += new System.EventHandler(clicOnSearchResult);
+                    lb2.Tag = a.a;
+                    lb2.Dock = DockStyle.Fill;
+                    searchPanel.Controls.Add(lb2, 2, j);
+                    j++;
+                }
+            }
+            searchPanel.ResumeLayout();
 
         }
         private void clicOnSearchResult(object sender, EventArgs e)
@@ -499,12 +502,5 @@ namespace PineApple
         {
             numericUpDown3.Minimum = (sender as NumericUpDown).Value;
         }
-
-
-
-
-        
-
-
     }
 }
