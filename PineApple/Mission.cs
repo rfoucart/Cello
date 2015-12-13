@@ -156,6 +156,21 @@ namespace PineApple
         {
             return _activities.Where(x => x.getDay() == day).ToList();
         }
+        // retourne true si il y a une activité en exté ce jour là
+        public bool outThisDay(int day)
+        {
+            bool ext = false;
+            List<Activity> activities = selectActivitiesByDay(day);
+            if(activities.Count!=0)
+            {
+                foreach(Activity a in activities)
+                {
+                    if(a.getExternBool()==true)
+                    { ext=true; }
+                }   
+            }
+            return ext;
+        }
         public void setCurrentDate()
         {
             _currentDayEarth = DateTime.Now;

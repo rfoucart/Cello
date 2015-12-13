@@ -84,8 +84,9 @@ namespace PineApple
                 {
                     Button cmd = new Button();
                     cmd.Text = string.Format("{0}", (i - 1) * 10 + j);
-                    cmd.Image = new Bitmap(Image.FromFile("mol.png"), new Size(20, 20)); ;
+                    cmd.Image = new Bitmap(Image.FromFile("mol.png"), new Size(20, 20));
                     cmd.Bounds = button3.Bounds;
+                    cmd.Click += new EventHandler(button3_Click);
                     cmd.ImageAlign = ContentAlignment.MiddleRight;
                     cmd.TextAlign = ContentAlignment.MiddleLeft;
                     cmd.FlatStyle = FlatStyle.Flat;
@@ -134,24 +135,35 @@ namespace PineApple
         //probléme de vitesse pour l'instant
         public void panelActu(int i)
         {
+            
             if(i>=1 && i<=10)
             {
                for(int j=0 ; j<50 ; j++)
                {
-                   listButtonPanel[j].Text=string.Format("{0}",(i-1)*50+(j+1));
-                   listButtonPanel[j].Click+= new EventHandler(button3_Click);
-                   if ((i - 1) * 50 + (j + 1) == mission.getCurrentDay().getDay())
+                   int jour = (i - 1) * 50 + (j + 1);
+                   if ( mission.outThisDay(jour)==false)
+                   {
+                       listButtonPanel[j].Image=null;
+                   }
+                   else
+                   {
+                       listButtonPanel[j].Image = new Bitmap(Image.FromFile("mol.png"), new Size(20, 20));
+                   }
+                   
+                   listButtonPanel[j].Text=string.Format("{0}",jour);
+                   if (jour == mission.getCurrentDay().getDay())
                    {
                        listButtonPanel[j].BackColor=Color.LightGreen;
                    }
-                   else if ((i - 1) * 50 + (j + 1) > mission.getCurrentDay().getDay())
+                   else if (jour > mission.getCurrentDay().getDay())
                    {
                        listButtonPanel[j].BackColor=Color.LightBlue;
                    }
-                   else if ((i-1)*50+(j+1) < mission.getCurrentDay().getDay())
+                   else if (jour < mission.getCurrentDay().getDay())
                    {
                        listButtonPanel[j].BackColor = Color.LightGray;
                    }
+
                }
             }
         }

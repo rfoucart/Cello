@@ -42,6 +42,10 @@ namespace PineApple
         {
             return _number;
         }
+        public bool getExternBool()
+        {
+            return _externMission;
+        }
         public string getDescription()
         {
             return _description;
