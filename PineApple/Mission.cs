@@ -19,7 +19,7 @@ namespace PineApple
         private List<Type> _genericTypes;
         private MDate _currentDay;
         private DateTime _firstDayEarth;
-        private DateTime _CurrentDayEarth;
+        private DateTime _currentDayEarth;
 
         
         /// <summary>
@@ -27,7 +27,7 @@ namespace PineApple
         /// </summary>
         public Mission(string name, int numberOfDays)
         {
-            _CurrentDayEarth = DateTime.Now;
+            _currentDayEarth = DateTime.Now;
             _numberOfDays = numberOfDays;
             _activities = new List<Activity>(0);
             _astronautes = new List<Astronaute>(0);
@@ -135,26 +135,6 @@ namespace PineApple
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="searchDates"></param>
-        /// <returns></returns>
-        public List<Activity> searchByPeriod(MDate[] searchDates)
-        {
-            return new List<Activity>(0);
-        }
-
-        /// <summary>
-        /// search method by day
-        /// </summary>
-        /// <param name="searchDate"></param>
-        /// <returns></returns>
-        public List<Activity> searchByDate(MDate searchDate)
-        {
-            return new List<Activity>(0);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         public List<Activity> searchByType(string type)
@@ -167,13 +147,30 @@ namespace PineApple
         /// </summary>
         /// <param name="genericType"></param>
         /// <returns></returns>
-        public List<Activity> searchByGenericType(string genericType)
+        public List<searchResult> searchByType(int GT, int T)
         {
-            return new List<Activity>(0);
+            List<Activity> result = _activities.Where(x=> x.getType()==T && x.getGenericType()==GT).ToList();
+            List<searchResult> Result = new List<searchResult>(0);
+            foreach(Activity a in result)
+            {
+                searchResult r=new searchResult();
+                r.types = string.Format("{0} - {1}", _genericTypes[GT].getName(), _genericTypes[GT].getTypes()[T]);
+                r.startDate = a.getStartDate().printMDate();
+                r.endDate = a.getEndDate().printMDate();
+                r.a=a;
+                Result.Add(r);
+            }
+            return Result ;
         }
         public List<Activity> selectActivitiesByDay(int day)
         {
             return _activities.Where(x => x.getDay() == day).ToList();
+        }
+        public void setCurrentDate()
+        {
+            _currentDayEarth = DateTime.Now;
+            _currentDay = earthToMarsDate(_currentDayEarth);
+
         }
 
 
@@ -257,6 +254,7 @@ namespace PineApple
             //Add the ref number to the class
             Activity.setRefNumber(int.Parse(refNum.InnerText));
         }
+        //Date martienne en fonction de la date terrestre 
         public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
@@ -265,6 +263,19 @@ namespace PineApple
             double minutes =(hours - (int)(hours))*60;
             
             return new MDate((int)(days),(int)(hours),(int)(minutes));
+        }
+        //Terrestre en fonction de la date martienne
+        public string marsToEarthDate()
+        {
+            return ""; 
+        }
+
+        public struct searchResult
+        {
+            public string types;
+            public string startDate;
+            public string endDate;
+            public Activity a;
         }
     }
 }

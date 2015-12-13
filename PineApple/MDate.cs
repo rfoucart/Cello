@@ -27,6 +27,10 @@ namespace PineApple
         {
             return string.Format("{0} {1} {2}", _dayNumber, _hours, _minutes);
         }
+        public string printMDate()
+        {
+            return string.Format("Jour:{0} Heure {1}:{2}", _dayNumber, _hours, _minutes);
+        }
         public int getDay()
         {
             return _dayNumber;
