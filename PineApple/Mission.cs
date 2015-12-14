@@ -78,13 +78,13 @@ namespace PineApple
         {
             List<int> astro=_astronautes.Select(a=>a.getNumber()).ToList();
 
-            _activities.Add(new Activity(" ", 0, 0, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
-            _activities.Add(new Activity(" ", 0, 2, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
-            _activities.Add(new Activity(" ", 0, 3, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
-            _activities.Add(new Activity(" ", 0, 3, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
-            _activities.Add(new Activity(" ", 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
+            _activities.Add(new Activity(string.Empty, 0, 1, 1, astro, false, false, new MDate(jour, 0, 0), new MDate(jour, 7, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 3, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 3, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));
 
         }
         /// <summary>
@@ -123,7 +123,7 @@ namespace PineApple
         /// <returns></returns>
         public List<searchResult> searchByType(int GT, int T, int periodStart, int periodEnd)
         {
-            List<Activity> result = _activities.Where(x=> x.getType()==T && x.getGenericType()==GT && periodStart <= x.getDay() && periodEnd >= x.getDay()).ToList();
+            List<Activity> result = _activities.Where(x=> x.getIndexOfType()==T && x.getIndexOfGenericType()==GT && periodStart <= x.getDay() && periodEnd >= x.getDay()).ToList();
             List<searchResult> Result = new List<searchResult>(0);
             foreach(Activity a in result)
             {
@@ -143,7 +143,7 @@ namespace PineApple
             foreach (Activity a in result)
             {
                 searchResult r = new searchResult();
-                r.types = string.Format("{0} - {1}", _genericTypes[a.getGenericType()].getName(), _genericTypes[a.getGenericType()].getTypes()[a.getType()]);
+                r.types = string.Format("{0} - {1}", _genericTypes[a.getIndexOfGenericType()].getName(), _genericTypes[a.getIndexOfGenericType()].getTypes()[a.getIndexOfType()]);
                 r.startDate = a.getStartDate().printMDate();
                 r.endDate = a.getEndDate().printMDate();
                 r.a = a;

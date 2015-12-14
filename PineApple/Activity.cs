@@ -12,8 +12,8 @@ namespace PineApple
         private static int _referenceNumber=0;
         private int _number;
         private string _description;
-        private int _genericType;
-        private int _type;
+        private int _indexOfGenericType;
+        private int _indexOfType;
         private List<int> _astronautes;
         private int _location;
         private bool _externMission;
@@ -29,8 +29,8 @@ namespace PineApple
             _number = _referenceNumber;
             _referenceNumber++;
             _description = description;
-            _genericType = genericType;
-            _type = type;
+            _indexOfGenericType = genericType;
+            _indexOfType = type;
             _location = location;
             _externMission = externMission;
             _spaceVehicle = spaceVehicle;
@@ -70,13 +70,13 @@ namespace PineApple
         {
             return _endDate;
         }
-        public int getGenericType()
+        public int getIndexOfGenericType()
         {
-            return _genericType;
+            return _indexOfGenericType;
         }
-        public int getType()
+        public int getIndexOfType()
         {
-            return _type;
+            return _indexOfType;
         }
         public static void setRefNumber(int refNumber)
         {
@@ -103,11 +103,11 @@ namespace PineApple
             activity.AppendChild(Description);
 
             XmlNode GenericType = xmlDoc.CreateElement("GenerycType");
-            GenericType.InnerText = this._genericType.ToString();
+            GenericType.InnerText = this._indexOfGenericType.ToString();
             activity.AppendChild(GenericType);
 
             XmlNode Type = xmlDoc.CreateElement("Type");
-            Type.InnerText = this._type.ToString();
+            Type.InnerText = this._indexOfType.ToString();
             activity.AppendChild(Type);
 
             string astro = "";
