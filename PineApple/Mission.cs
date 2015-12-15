@@ -82,6 +82,7 @@ namespace PineApple
             _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 7, 0), new MDate(jour, 8, 0)));
             _activities.Add(new Activity(string.Empty, 0, 3, 1, astro, false, false, new MDate(jour, 8, 0), new MDate(jour, 12, 0)));
             _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 12, 0), new MDate(jour, 14, 0)));
+            _activities.Add(new Activity(string.Empty, 0, 3, 1, astro, false, false, new MDate(jour, 14, 0), new MDate(jour, 19, 0)));
             _activities.Add(new Activity(string.Empty, 0, 0, 1, astro, false, false, new MDate(jour, 19, 0), new MDate(jour, 21, 0)));
             _activities.Add(new Activity(string.Empty, 0, 3, 1, astro, false, false, new MDate(jour, 21, 0), new MDate(jour, 23, 0)));
             _activities.Add(new Activity(string.Empty, 0, 1, 1, astro, false, false, new MDate(jour, 23, 0), new MDate(jour, 23, 40)));

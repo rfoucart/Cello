@@ -409,7 +409,6 @@ namespace PineApple
                 checkedListBox1.SetItemChecked(numAstro, true);
             labelGenericType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getGenericType();
             comboBoxType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getTypes()[a.getIndexOfType()];
-            richTextBox1.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getTypes()[a.getIndexOfType()];
         }
         
         private void NewActivityButton_Click(object sender, EventArgs e)
