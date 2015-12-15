@@ -311,8 +311,12 @@ namespace PineApple
         private void Form1_Load(object sender, EventArgs e)
         {
             foreach (Astronaute astro in mission.getAstronautes())
-            {
                 checkedListBox1.Items.Add(astro.getName());
+            for (int i = 0; i < mission.getActivityTypes().Count; i++)
+            {
+                comboBoxType.Items.Add("     ----" + mission.getActivityTypes()[i].getGenericType() + "----");
+                //comboBoxType.
+                comboBoxType.Items.AddRange(mission.getActivityTypes()[i].getTypes());
             }
         }
 
@@ -397,34 +401,35 @@ namespace PineApple
             comboBoxEndHour.SelectedIndex = a.getEndDate().getHours();
             comboBoxEndMinutes.SelectedIndex = a.getEndDate().getMinutes() / 10;
             richTextBox1.Text = a.getDescription();
-            labelGenericType.Text = a.getGenericType().ToString();
-            comboBoxType.SelectedItem = a.getType().ToString();
+            labelGenericType.Text = a.getIndexOfGenericType().ToString();
+            comboBoxType.SelectedItem = a.getIndexOfType().ToString();
             for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
             foreach (int numAstro in a.getAstronautes()) //Pour resélectionner les bons
                 checkedListBox1.SetItemChecked(numAstro, true);
+            labelGenericType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getGenericType();
+            comboBoxType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getTypes()[a.getIndexOfType()];
         }
         
         private void NewActivityButton_Click(object sender, EventArgs e)
         {
             groupBox1.Text = "New Activity"; // Changement du nom pour montrer qu'on crée une activité
             NewActivityButton.Enabled = false;
-            comboBoxStartHour.Text = "";
-            comboBoxStartMinutes.Text = "";
-            comboBoxEndHour.Text = "";
-            comboBoxEndMinutes.Text = "";
-            richTextBox1.Text = "";
-            labelGenericType.Text = "";
-            comboBoxType.Text = "";
+            comboBoxStartHour.Text = string.Empty;
+            comboBoxStartMinutes.Text = string.Empty;
+            comboBoxEndHour.Text = string.Empty;
+            comboBoxEndMinutes.Text = string.Empty;
+            richTextBox1.Text = string.Empty;
+            labelGenericType.Text = string.Empty;
+            comboBoxType.Text = string.Empty;
             for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
-            numericUpDown1.ResetText();
+            
         }
 
         private void SaveActivityButton_Click(object sender, EventArgs e)
         {
             groupBox1.Name = "Activity";
-
 
             //mission.newActivity(richTextBox1.Text, )
 

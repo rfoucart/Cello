@@ -92,10 +92,10 @@
             this.label32 = new System.Windows.Forms.Label();
             this.globalPanel = new PineApple.DoubleBufferedTableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
+            this.astroNames = new PineApple.DoubleBufferedTableLayoutPanel();
             this.tableLayoutPanel2 = new PineApple.DoubleBufferedTableLayoutPanel();
             this.tableLayoutPanel1 = new PineApple.DoubleBufferedTableLayoutPanel();
             this.searchPanel = new PineApple.DoubleBufferedTableLayoutPanel();
-            this.astroNames = new PineApple.DoubleBufferedTableLayoutPanel();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictNanediVallis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -184,7 +184,7 @@
             // 
             this.labelGenericType.AutoSize = true;
             this.labelGenericType.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelGenericType.Location = new System.Drawing.Point(253, 124);
+            this.labelGenericType.Location = new System.Drawing.Point(227, 124);
             this.labelGenericType.MinimumSize = new System.Drawing.Size(100, 0);
             this.labelGenericType.Name = "labelGenericType";
             this.labelGenericType.Size = new System.Drawing.Size(100, 13);
@@ -192,16 +192,18 @@
             // 
             // comboBoxType
             // 
+            this.comboBoxType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(255, 68);
+            this.comboBoxType.Location = new System.Drawing.Point(227, 68);
             this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxType.Size = new System.Drawing.Size(137, 21);
             this.comboBoxType.TabIndex = 56;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(253, 105);
+            this.label15.Location = new System.Drawing.Point(227, 105);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(68, 13);
             this.label15.TabIndex = 55;
@@ -210,7 +212,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(253, 52);
+            this.label14.Location = new System.Drawing.Point(227, 52);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 13);
             this.label14.TabIndex = 54;
@@ -869,6 +871,17 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // astroNames
+            // 
+            this.astroNames.ColumnCount = 1;
+            this.astroNames.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.astroNames.Location = new System.Drawing.Point(6, 63);
+            this.astroNames.Name = "astroNames";
+            this.astroNames.RowCount = 1;
+            this.astroNames.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.astroNames.Size = new System.Drawing.Size(67, 182);
+            this.astroNames.TabIndex = 56;
+            // 
             // tableLayoutPanel2
             // 
             this.tableLayoutPanel2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -910,24 +923,13 @@
             this.searchPanel.ColumnCount = 3;
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 221F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 227F));
             this.searchPanel.Location = new System.Drawing.Point(2, 102);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.RowCount = 1;
             this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.searchPanel.Size = new System.Drawing.Size(537, 231);
             this.searchPanel.TabIndex = 12;
-            // 
-            // astroNames
-            // 
-            this.astroNames.ColumnCount = 1;
-            this.astroNames.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.astroNames.Location = new System.Drawing.Point(6, 63);
-            this.astroNames.Name = "astroNames";
-            this.astroNames.RowCount = 1;
-            this.astroNames.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.astroNames.Size = new System.Drawing.Size(67, 182);
-            this.astroNames.TabIndex = 56;
             // 
             // Form1
             // 
