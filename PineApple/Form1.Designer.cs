@@ -95,9 +95,7 @@
             this.label32 = new System.Windows.Forms.Label();
             this.globalPanel = new PineApple.DoubleBufferedTableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
-
             this.comboBoxGenericType = new System.Windows.Forms.ComboBox();
-
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictNanediVallis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -556,18 +554,7 @@
             this.groupBox2.Text = "Search";
             // 
             // searchPanel
-            //   
-            this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.searchPanel.ColumnCount = 3;
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
-            this.searchPanel.Location = new System.Drawing.Point(6, 101);
-            this.searchPanel.Name = "searchPanel";
-            this.searchPanel.RowCount = 1;
-            this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.searchPanel.Size = new System.Drawing.Size(530, 231);
-
+            // 
             this.searchPanel.AutoScroll = true;
             this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.searchPanel.ColumnCount = 3;
@@ -579,7 +566,6 @@
             this.searchPanel.RowCount = 1;
             this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.searchPanel.Size = new System.Drawing.Size(537, 231);
-
             this.searchPanel.TabIndex = 12;
             // 
             // button1
@@ -935,7 +921,6 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-
             // comboBoxGenericType
             // 
             this.comboBoxGenericType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -947,7 +932,6 @@
             this.comboBoxGenericType.TabIndex = 59;
             this.comboBoxGenericType.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenericType_SelectedIndexChanged);
             // 
-
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -970,7 +954,7 @@
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PreviousButton);
             this.MaximumSize = new System.Drawing.Size(1280, 777);
-            this.MinimumSize = new System.Drawing.Size(1278, 726);
+            this.MinimumSize = new System.Drawing.Size(1278, 758);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
