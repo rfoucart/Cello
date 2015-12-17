@@ -28,9 +28,9 @@ namespace PineApple
             mission.ReadActivityXML();
 
             globalPanel.Controls.Remove(globalPanel.GetControlFromPosition(0, 0));
-            daySheet=4;
+            daySheet = 4;//getDaySheetNumberFromDay(mission.getCurrentDay().getDay());
             globalPanelInit();
-            panelActu(4);
+            panelActu(daySheet);
             
             //mission.newAstronaute("jean-pierre");
             //mission.newAstronaute("jean-guy");
@@ -44,9 +44,10 @@ namespace PineApple
             
             //mission.defaultDay(1);
             //mission.WriteActivityXML();
-            showDay(1);
+            showDay(mission.getCurrentDay().getDay());
             searchInit();
             updateDateNow();
+            updateSelectedTime(mission.getCurrentDay().getDay());
 
             dayHeaderInit();
         }
@@ -66,15 +67,8 @@ namespace PineApple
             searchGTypeCombo.DataSource = new BindingSource(GT, null);
             searchGTypeCombo.DisplayMember = "Value";
             searchGTypeCombo.ValueMember = "Key";
-            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
-         
         }
-        private void updateDateNow()
-        {
-            DateTime now = DateTime.Now;
-            label29.Text = now.ToString();
-            label30.Text = mission.earthToMarsDate(now).getDay().ToString();
-        }
+        
         private void globalPanelInit()
         {
             // Création du paneau de boutons
@@ -351,6 +345,7 @@ namespace PineApple
         {
             Button A = sender as Button;
             showDay(int.Parse(A.Text));
+            updateSelectedTime(int.Parse(A.Text));
         }
 
         private void PictNanediVallis_MouseClick(object sender, MouseEventArgs e)
@@ -550,6 +545,34 @@ namespace PineApple
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown3.Minimum = (sender as NumericUpDown).Value;
+        }
+        private void updateDateNow()
+        {
+            DateTime now = DateTime.Now;
+            label29.Text = now.ToString();
+            label30.Text = mission.earthToMarsDate(now).getDay().ToString();
+        }
+        private void updateSelectedTime(int i)
+        {
+            mission.updateSelectedDay(i);
+            label31.Text=mission.marsToEarthDate(mission.getSelectedDay());
+            label32.Text = mission.getSelectedDay().ToString();
+        }
+        private int getDaySheetNumberFromDay(int i)
+        {
+            int sheet=0;
+            if(i<=500 && i>0)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    if (i >= j * 50)
+                    {
+                        sheet = j++;
+                    }
+                }
+            }
+            return sheet;
+
         }
     }
 }

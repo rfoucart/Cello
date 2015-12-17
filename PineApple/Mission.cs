@@ -20,13 +20,14 @@ namespace PineApple
         private MDate _currentDay;
         private DateTime _firstDayEarth;
         private DateTime _currentDayEarth;
-
+        private int _selectedDay;
         
         /// <summary>
         /// 
         /// </summary>
         public Mission(string name, int numberOfDays)
         {
+            _firstDayEarth = new DateTime(2015, 12, 13,0,0,0);
             _currentDayEarth = DateTime.Now;
             _numberOfDays = numberOfDays;
             _activities = new List<Activity>(0);
@@ -48,7 +49,8 @@ namespace PineApple
             _genericTypes.Add(new Type("Repair", Repair));
             _genericTypes.Add(new Type("Emergency", Emergency));
 
-            _currentDay = new MDate(350,0,0);
+            _currentDay = earthToMarsDate(DateTime.Now);
+            _selectedDay = _currentDay.getDay();
         }
         public List<Type> getActivityTypes()
         {
@@ -57,6 +59,17 @@ namespace PineApple
         public MDate getCurrentDay()
         {
             return _currentDay;
+        }
+        public void updateSelectedDay(int i)
+        {
+            if(0<i && i<=500)
+            {
+                _selectedDay = i;
+            }
+        }
+        public int getSelectedDay()
+        {
+            return _selectedDay;
         }
 
         /// <summary>
@@ -116,7 +129,6 @@ namespace PineApple
         {
             return _astronautes;
         }
-
         /// <summary>
         /// 
         /// </summary>
@@ -264,18 +276,23 @@ namespace PineApple
         public MDate earthToMarsDate(DateTime earthDate)
         {
             TimeSpan lengthFromBeginning = earthDate - _firstDayEarth;
-            double days=(lengthFromBeginning.Hours+lengthFromBeginning.Minutes/60.0)/24.4;
+            //(new DateTime(earthDate.Year, earthDate.Month, earthDate.Day))
+            double days=(lengthFromBeginning.Days*24+lengthFromBeginning.Hours+lengthFromBeginning.Minutes/60.0)/24.4;
             double hours=24.4*days-(int)(days);
             double minutes =(hours - (int)(hours))*60;
             
             return new MDate((int)(days),(int)(hours),(int)(minutes));
         }
         //Terrestre en fonction de la date martienne
-        public string marsToEarthDate()
+        public string marsToEarthDate(int j)
         {
-            return ""; 
+            int nbHours = (int) (j * 24.4);
+            TimeSpan t = new TimeSpan(nbHours,0,0);
+            DateTime d = _firstDayEarth + t;
+            return d.ToString("d/MM/yyyy"); 
         }
 
+        //Structure permettant de mettre en forme les resultats de la recherche.
         public struct searchResult
         {
             public string types;

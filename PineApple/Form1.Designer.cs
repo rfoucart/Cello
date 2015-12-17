@@ -120,7 +120,7 @@
             // NextButton
             // 
             this.NextButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.NextButton.Location = new System.Drawing.Point(410, 25);
+            this.NextButton.Location = new System.Drawing.Point(448, 25);
             this.NextButton.Name = "NextButton";
             this.NextButton.Size = new System.Drawing.Size(75, 23);
             this.NextButton.TabIndex = 5;
@@ -163,7 +163,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(519, 285);
+            this.groupBox1.Location = new System.Drawing.Point(557, 285);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(696, 444);
             this.groupBox1.TabIndex = 50;
@@ -565,17 +565,16 @@
             // 
             // searchPanel
             // 
-            this.searchPanel.AutoScroll = true;
             this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.searchPanel.ColumnCount = 3;
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
-            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
-            this.searchPanel.Location = new System.Drawing.Point(2, 102);
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 206F));
+            this.searchPanel.Location = new System.Drawing.Point(6, 101);
             this.searchPanel.Name = "searchPanel";
             this.searchPanel.RowCount = 1;
-            this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.searchPanel.Size = new System.Drawing.Size(537, 231);
+            this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.searchPanel.Size = new System.Drawing.Size(530, 231);
             this.searchPanel.TabIndex = 12;
             // 
             // button1
@@ -752,7 +751,7 @@
             this.groupBox3.Controls.Add(this.astroNames);
             this.groupBox3.Controls.Add(this.tableLayoutPanel2);
             this.groupBox3.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox3.Location = new System.Drawing.Point(519, 28);
+            this.groupBox3.Location = new System.Drawing.Point(557, 28);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(696, 251);
             this.groupBox3.TabIndex = 54;
@@ -935,7 +934,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 738);
+            this.ClientSize = new System.Drawing.Size(1264, 738);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
@@ -953,7 +952,7 @@
             this.Controls.Add(this.NextButton);
             this.Controls.Add(this.PreviousButton);
             this.MaximumSize = new System.Drawing.Size(1280, 777);
-            this.MinimumSize = new System.Drawing.Size(1228, 726);
+            this.MinimumSize = new System.Drawing.Size(1278, 726);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
