@@ -66,6 +66,9 @@ namespace PineApple
             searchGTypeCombo.DataSource = new BindingSource(GT, null);
             searchGTypeCombo.DisplayMember = "Value";
             searchGTypeCombo.ValueMember = "Key";
+            comboBoxGenericType.DataSource = new BindingSource(GT, null);
+            comboBoxGenericType.DisplayMember = "Value";
+            comboBoxGenericType.ValueMember = "Key";
             //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
          
         }
@@ -312,12 +315,7 @@ namespace PineApple
         {
             foreach (Astronaute astro in mission.getAstronautes())
                 checkedListBox1.Items.Add(astro.getName());
-            for (int i = 0; i < mission.getActivityTypes().Count; i++)
-            {
-                comboBoxType.Items.Add("     ----" + mission.getActivityTypes()[i].getGenericType() + "----");
-                //comboBoxType.
-                comboBoxType.Items.AddRange(mission.getActivityTypes()[i].getTypes());
-            }
+            
         }
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
@@ -382,15 +380,12 @@ namespace PineApple
         //Remplissage des champs lors du clic sur une activité
         private void cmd2_Click(object sender, EventArgs e)
         {
-            //On réactive le bouton "new activity" s'il a été bloqué, et on bloque Save & Reset
-            NewActivityButton.Enabled = true;
-            SaveActivityButton.Enabled = false;
-            ResetActivityButton.Enabled = false;
-
             // Récupération de l'activité liée au bouton
             Activity a = (Activity)(sender as Button).Tag;
+            ResetActivityButton.Tag = a;
             //Appel de la fonction de remplissage
             fillActivityPanel(a);
+            groupBox1.Text = "Activity";
         }
         //rempli les champs juste grace au numero de l'activité  tout les cas 
         private void fillActivityPanel(Activity a)
@@ -401,51 +396,37 @@ namespace PineApple
             comboBoxEndHour.SelectedIndex = a.getEndDate().getHours();
             comboBoxEndMinutes.SelectedIndex = a.getEndDate().getMinutes() / 10;
             richTextBox1.Text = a.getDescription();
-            labelGenericType.Text = a.getIndexOfGenericType().ToString();
-            comboBoxType.SelectedItem = a.getIndexOfType().ToString();
+            comboBoxGenericType.SelectedIndex = a.getIndexOfGenericType();
+            comboBoxType.SelectedIndex = a.getIndexOfType();
             for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
             foreach (int numAstro in a.getAstronautes()) //Pour resélectionner les bons
                 checkedListBox1.SetItemChecked(numAstro, true);
-            labelGenericType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getGenericType();
-            comboBoxType.Text = mission.getActivityTypes()[a.getIndexOfGenericType()].getTypes()[a.getIndexOfType()];
         }
         
         private void NewActivityButton_Click(object sender, EventArgs e)
         {
             groupBox1.Text = "New Activity"; // Changement du nom pour montrer qu'on crée une activité
-            NewActivityButton.Enabled = false;
             comboBoxStartHour.Text = string.Empty;
             comboBoxStartMinutes.Text = string.Empty;
             comboBoxEndHour.Text = string.Empty;
             comboBoxEndMinutes.Text = string.Empty;
             richTextBox1.Text = string.Empty;
-            labelGenericType.Text = string.Empty;
+            comboBoxGenericType.Text = string.Empty;
             comboBoxType.Text = string.Empty;
-            for (int i = 1; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
-            
+            Activity a = new Activity();
         }
 
         private void SaveActivityButton_Click(object sender, EventArgs e)
         {
-            groupBox1.Name = "Activity";
-
-            //mission.newActivity(richTextBox1.Text, )
-
-            //Réinitialisation des boutons après sauvegarde
-            NewActivityButton.Enabled = true;
-            SaveActivityButton.Enabled = false;
-            ResetActivityButton.Enabled = false;
+            groupBox1.Text = "Activity";
         }
         private void ResetActivityButton_Click(object sender, EventArgs e)
         {
-            groupBox1.Name = "Activity";
-
-            //Réinitialisation des boutons après reset
-            NewActivityButton.Enabled = true;
-            SaveActivityButton.Enabled = false;
-            ResetActivityButton.Enabled = false;
+            groupBox1.Text = "Activity";
+            fillActivityPanel((Activity)ResetActivityButton.Tag);
         }
 
         //Fonction recherche aprés click sur le bouton search du panel search.
@@ -550,6 +531,28 @@ namespace PineApple
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             numericUpDown3.Minimum = (sender as NumericUpDown).Value;
+        }
+
+        private void comboBoxGenericType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox a = sender as ComboBox;
+
+            int key = int.Parse(((KeyValuePair<string, string>)a.SelectedItem).Key);
+
+            List<Type> listeGenericType = mission.getActivityTypes();
+
+            int i = 0;
+            Dictionary<string, string> T = new Dictionary<string, string>();
+            foreach (string t in listeGenericType[key].getTypes())
+            {
+                T.Add(i.ToString(), t);
+                i++;
+            }
+            comboBoxType.DataSource = new BindingSource(T, null);
+            comboBoxType.DisplayMember = "Value";
+            comboBoxType.ValueMember = "Key";
+            //string value = ((KeyValuePair<string, string>)searchGTypeCombo.SelectedItem).Value;
+
         }
     }
 }
