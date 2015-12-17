@@ -33,7 +33,6 @@
             this.NextButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ResetActivityButton = new System.Windows.Forms.Button();
-            this.labelGenericType = new System.Windows.Forms.Label();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -96,6 +95,9 @@
             this.label32 = new System.Windows.Forms.Label();
             this.globalPanel = new PineApple.DoubleBufferedTableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
+
+            this.comboBoxGenericType = new System.Windows.Forms.ComboBox();
+
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PictNanediVallis)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
@@ -131,8 +133,8 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.comboBoxGenericType);
             this.groupBox1.Controls.Add(this.ResetActivityButton);
-            this.groupBox1.Controls.Add(this.labelGenericType);
             this.groupBox1.Controls.Add(this.comboBoxType);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.label14);
@@ -180,22 +182,12 @@
             this.ResetActivityButton.UseVisualStyleBackColor = true;
             this.ResetActivityButton.Click += new System.EventHandler(this.ResetActivityButton_Click);
             // 
-            // labelGenericType
-            // 
-            this.labelGenericType.AutoSize = true;
-            this.labelGenericType.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelGenericType.Location = new System.Drawing.Point(227, 124);
-            this.labelGenericType.MinimumSize = new System.Drawing.Size(100, 0);
-            this.labelGenericType.Name = "labelGenericType";
-            this.labelGenericType.Size = new System.Drawing.Size(100, 13);
-            this.labelGenericType.TabIndex = 57;
-            // 
             // comboBoxType
             // 
             this.comboBoxType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.comboBoxType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxType.FormattingEnabled = true;
-            this.comboBoxType.Location = new System.Drawing.Point(227, 68);
+            this.comboBoxType.Location = new System.Drawing.Point(227, 121);
             this.comboBoxType.Name = "comboBoxType";
             this.comboBoxType.Size = new System.Drawing.Size(137, 21);
             this.comboBoxType.TabIndex = 56;
@@ -203,7 +195,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(227, 105);
+            this.label15.Location = new System.Drawing.Point(227, 52);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(68, 13);
             this.label15.TabIndex = 55;
@@ -212,7 +204,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(227, 52);
+            this.label14.Location = new System.Drawing.Point(227, 105);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(31, 13);
             this.label14.TabIndex = 54;
@@ -564,7 +556,7 @@
             this.groupBox2.Text = "Search";
             // 
             // searchPanel
-            // 
+            //   
             this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.searchPanel.ColumnCount = 3;
             this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
@@ -575,6 +567,19 @@
             this.searchPanel.RowCount = 1;
             this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.searchPanel.Size = new System.Drawing.Size(530, 231);
+
+            this.searchPanel.AutoScroll = true;
+            this.searchPanel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.searchPanel.ColumnCount = 3;
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 169F));
+            this.searchPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+            this.searchPanel.Location = new System.Drawing.Point(2, 102);
+            this.searchPanel.Name = "searchPanel";
+            this.searchPanel.RowCount = 1;
+            this.searchPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.searchPanel.Size = new System.Drawing.Size(537, 231);
+
             this.searchPanel.TabIndex = 12;
             // 
             // button1
@@ -930,6 +935,19 @@
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+
+            // comboBoxGenericType
+            // 
+            this.comboBoxGenericType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.comboBoxGenericType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxGenericType.FormattingEnabled = true;
+            this.comboBoxGenericType.Location = new System.Drawing.Point(227, 68);
+            this.comboBoxGenericType.Name = "comboBoxGenericType";
+            this.comboBoxGenericType.Size = new System.Drawing.Size(137, 21);
+            this.comboBoxGenericType.TabIndex = 59;
+            this.comboBoxGenericType.SelectedIndexChanged += new System.EventHandler(this.comboBoxGenericType_SelectedIndexChanged);
+            // 
+
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1011,7 +1029,6 @@
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label labelGenericType;
         private System.Windows.Forms.Button ResetActivityButton;
         private System.Windows.Forms.ComboBox searchTypeCombo;
         private System.Windows.Forms.TextBox textBox4;
@@ -1042,6 +1059,7 @@
         private System.Windows.Forms.Label label32;
         private DoubleBufferedTableLayoutPanel searchPanel;
         private DoubleBufferedTableLayoutPanel astroNames;
+        private System.Windows.Forms.ComboBox comboBoxGenericType;
     }
 }
 
