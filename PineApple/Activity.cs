@@ -25,7 +25,20 @@ namespace PineApple
         /// 
         /// </summary>
 
-        public Activity() {}
+        public Activity()
+        {
+            _number = _referenceNumber;
+            _referenceNumber++;
+            _description = string.Empty;
+            _indexOfGenericType = 0;
+            _indexOfType = 0;
+            _location = 0;
+            _externMission = false;
+            _spaceVehicle = false;
+            _astronautes = null;
+            _startDate = null;
+            _endDate = null;
+        }
         public Activity(string description, int genericType ,int type, int location, List<int> astronautes, bool externMission, bool spaceVehicle, MDate startDate, MDate endDate)
         {
             _number = _referenceNumber;

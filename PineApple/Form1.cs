@@ -417,6 +417,7 @@ namespace PineApple
             for (int i = 0; i < checkedListBox1.Items.Count; i++)//On déselectionne tous les astronautes
                 checkedListBox1.SetItemChecked(i, false);
             Activity a = new Activity();
+            ResetActivityButton.Tag = a;
         }
 
         private void SaveActivityButton_Click(object sender, EventArgs e)
